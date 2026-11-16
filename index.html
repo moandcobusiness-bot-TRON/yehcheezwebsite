@@ -147,8 +147,8 @@ body.noscroll{overflow:hidden}
 .story2-cell img{display:block;width:100%;height:auto}
 .story2-order{position:absolute;left:32%;top:93.8%;width:25.5%;height:4.4%}
 @media (max-width:820px){
-  .story2{grid-template-columns:1fr}
-  .story2-cell img{max-width:640px;margin:0 auto}
+  /* stays side by side on phones, like the mock-up */
+  .story2{border-top:var(--rule) solid var(--white)}
 }
 
 /* ================= OYE HOYE ================= */
@@ -222,17 +222,45 @@ body.noscroll{overflow:hidden}
 .socials svg{width:64px;height:64px}
 
 /* ================= RESPONSIVE ================= */
+/* Phones & small tablets: same sections and content as desktop, laid out like the mobile mock-up.
+   Sizes are in vw so the whole page scales with the screen instead of reflowing. */
 @media (max-width:820px){
   html{scroll-padding-top:74px}
-  .nav-inner{padding:14px 18px}
-  .links{display:none}
-  .burger{width:44px;gap:8px}
-  .hero{grid-template-columns:1fr;gap:34px;padding:56px 22px 60px}
-  .vbar{width:120px;height:6px}
+
+  /* nav: logo | ORDER NOW | burger */
+  .nav-inner{padding:12px 16px;gap:10px}
+  .links{flex:1;justify-content:center}
+  .links > li:not(.has-drop){display:none}
+  .links button{font-size:clamp(1.7rem,8.2vw,2.8rem)}
+  .burger{width:clamp(40px,11vw,56px);gap:8px}
+
+  /* hero stays two columns: wordmark | bar | tagline */
+  .hero{grid-template-columns:1fr 4px 1.15fr;gap:4%;padding:13vw 4% 11vw}
+  .wordmark .l1{font-size:12.5vw}
+  .wordmark .l2{font-size:14vw}
+  .vbar{width:4px;height:26vw;border-radius:4px}
+  .tag .t1{font-size:4.6vw}
+  .tag .t2{font-size:6.2vw}
+  .tag .t3{font-size:2.15vw;margin-top:3vw;white-space:nowrap;letter-spacing:-.05em}
+
   .story{grid-template-columns:1fr}
   .graphic{font-size:2.55vw;padding:40px 18px}
+
+  /* menu: one column, big headings */
+  .menu > h2{font-size:26vw}
+  .cat-h h3{font-size:clamp(2.8rem,14vw,4.6rem)}
+  .cat-h::after{width:46vw;height:5px}
   .cols{grid-template-columns:1fr}
   .vrule{display:none}
+
+  /* find us: map first on orange, then big heading + address */
+  .find{background:var(--orange);padding:3.2vw 3.2vw 44px}
+  .card{max-width:none}
+  .card iframe,.offline-map{height:76vw}
+  .card .body{padding:9vw 1vw 0}
+  .card h2{font-size:11.5vw;text-align:center}
+  .card .addr{font-size:7.6vw;line-height:1.3;margin:8vw 0}
+
   .socials svg{width:56px;height:56px}
 }
 
@@ -636,10 +664,10 @@ document.addEventListener('click', e => {
 });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') setOrder(false); });
 
-// any other ORDER NOW button opens that same dropdown (or the full-screen menu on phones,
-// where the nav links are hidden behind the hamburger)
+// any other ORDER NOW button opens that same dropdown
+// (falls back to the full-screen menu if the nav button is ever hidden)
 const openOrder = () => {
-  if (getComputedStyle($('.links')).display === 'none') {
+  if (orderToggle.offsetParent === null) {
     setMenu(true);
     $('.ov-order').scrollIntoView({ block: 'center' });
   } else {
