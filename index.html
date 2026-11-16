@@ -1,0 +1,900 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>YEH CHEEZ! | Pakistani Eatery, Milton</title>
+<meta name="description" content="Yeh Cheez! Pakistani eatery in Milton, ON. Paratha rolls, sandwiches, masala fries, chaat and karak chai.">
+<meta name="theme-color" content="#0e0e0e">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Anton&family=Syne:wght@800&family=Inter+Tight:wght@600;700;800&family=Montserrat:wght@500;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#0e0e0e;
+  --ink:#111111;
+  --orange:#f58714;
+  --white:#ffffff;
+  --rule:6px;
+  --cond:"Bebas Neue","Anton",Impact,sans-serif;
+  --wide:"Syne",sans-serif;
+  --body:"Inter Tight",system-ui,sans-serif;
+  --round:"Montserrat",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{background:#1a1a1a;color:var(--white);font-family:var(--body)}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+.site{max-width:1700px;margin:0 auto;background:var(--black);overflow-x:clip}
+.distress{filter:url(#distress)}
+.hr{height:var(--rule);background:var(--white)}
+
+/* ================= NAV ================= */
+.nav{position:sticky;top:0;z-index:50;background:var(--black)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:22px 40px;gap:20px}
+.logo{display:flex;flex-direction:column;align-items:center;text-decoration:none;line-height:1}
+.logo .icon{width:30px;height:30px;border:2px solid var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:4px}
+.logo .icon svg{width:18px;height:18px}
+.logo .word{font-family:var(--cond);font-size:1.7rem;color:var(--orange);letter-spacing:.02em}
+.logo .sub{font-family:var(--body);font-weight:800;font-size:.6rem;color:var(--white);letter-spacing:.04em;margin-top:2px}
+.links{display:flex;flex:1;justify-content:space-evenly;list-style:none}
+.links a{font-family:var(--cond);font-size:clamp(2rem,3.4vw,3.6rem);color:var(--orange);text-decoration:none;letter-spacing:.01em}
+.links a:hover{color:var(--white)}
+.burger{background:none;border:0;cursor:pointer;width:64px;height:40px;display:flex;flex-direction:column;justify-content:center;gap:12px;padding:4px 2px}
+.burger span{display:block;height:3px;background:var(--orange);border-radius:2px}
+
+/* ===== full-screen hamburger menu ===== */
+body.noscroll{overflow:hidden}
+.overlay{position:fixed;inset:0;z-index:100;background:var(--black);display:flex;flex-direction:column;opacity:0;visibility:hidden;transition:opacity .25s ease,visibility .25s}
+.overlay.open{opacity:1;visibility:visible}
+.ov-top{display:flex;justify-content:space-between;align-items:center;padding:22px 40px;flex:none}
+.ov-close{position:relative;width:clamp(44px,5vw,84px);aspect-ratio:1;background:none;border:0;cursor:pointer}
+.ov-close::before,.ov-close::after{content:"";position:absolute;left:-10%;top:50%;width:120%;height:3px;background:var(--orange);border-radius:2px}
+.ov-close::before{transform:rotate(45deg)}
+.ov-close::after{transform:rotate(-45deg)}
+.ov-links{flex:1;overflow-y:auto;list-style:none;display:flex;flex-direction:column;align-items:center;justify-content:safe center;gap:clamp(22px,5.5vh,70px);padding:20px 20px 60px}
+.ov-big{font-family:var(--cond);font-size:clamp(3rem,7.6vw,7.5rem);line-height:.9;color:var(--orange);text-decoration:none;white-space:nowrap}
+.ov-big:hover{color:var(--white)}
+.ov-order{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:clamp(24px,4vw,70px);max-width:100%;transform:translateX(clamp(0px,6vw,120px))}
+.ov-order .ov-big{cursor:default}
+.ov-order .ov-big:hover{color:var(--orange)}
+.tiles{display:flex;gap:clamp(28px,4.5vw,90px)}
+.tile{display:flex;flex-direction:column;align-items:center;gap:clamp(8px,1.4vw,22px);text-decoration:none}
+.sq{width:clamp(72px,7vw,110px);aspect-ratio:1;border-radius:24%;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;transition:transform .15s}
+.tile:hover .sq{transform:scale(1.06)}
+.sq.pickup{background:var(--orange);color:var(--ink);font-family:var(--cond);font-size:clamp(1.7rem,2.6vw,2.7rem);line-height:.95;text-align:center}
+.sq.delivery{background:#000;border:1px solid #2a2a2a;color:var(--white)}
+.sq.delivery svg{width:52%;height:52%}
+.sq img{width:100%;height:100%;object-fit:cover}
+.tile .lbl{font-family:var(--cond);color:var(--orange);font-size:clamp(1.7rem,2.9vw,3.2rem);line-height:1}
+@media (max-width:820px){
+  .ov-top{padding:14px 18px}
+  .ov-order{flex-direction:column;gap:22px;transform:none}
+}
+
+/* ================= HERO ================= */
+.hero{display:grid;grid-template-columns:1fr 6px 1fr;align-items:center;gap:6%;padding:clamp(60px,9vw,140px) 6%}
+.wordmark{font-family:var(--cond);color:var(--orange);text-align:center;line-height:.82;transform:rotate(-7deg)}
+.wordmark .l1{display:block;font-size:clamp(5.5rem,13vw,13.5rem)}
+.wordmark .l2{display:block;font-size:clamp(6.5rem,15.5vw,16rem)}
+.vbar{width:6px;height:clamp(160px,17vw,280px);background:var(--white);border-radius:6px;justify-self:center}
+.tag{text-align:center}
+.tag .t1{font-family:var(--cond);color:var(--orange);font-size:clamp(2.4rem,4.4vw,4.8rem);line-height:1.1}
+.tag .t2{font-family:var(--cond);color:var(--white);font-size:clamp(2.6rem,5.4vw,5.8rem);line-height:1.15}
+.tag .t3{font-family:var(--wide);color:var(--orange);font-size:clamp(.95rem,1.85vw,1.9rem);letter-spacing:-.04em;margin-top:6px}
+.tag .t3 b{color:var(--white)}
+
+/* ================= STORY ================= */
+.story{display:grid;grid-template-columns:1fr 1.06fr;gap:var(--rule);background:var(--white);border-bottom:var(--rule) solid var(--white)}
+.story-text{background:var(--orange);color:var(--ink);padding:clamp(28px,3vw,44px) clamp(18px,2vw,30px)}
+.story-text h2{font-family:var(--cond);font-size:clamp(4rem,6.4vw,7rem);text-align:center;line-height:1;margin-bottom:clamp(22px,3vw,50px)}
+.story-text p{font-weight:700;font-size:clamp(1.15rem,2.1vw,2.1rem);line-height:1.12;letter-spacing:-.035em;margin-bottom:1.1em}
+.story-text p:last-child{margin-bottom:0}
+.story-text a{color:inherit}
+
+.graphic{background:#000;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:6% 5%;font-size:min(1.25vw,21px);overflow:hidden}
+.roll-art{display:flex;align-items:center;width:100%;justify-content:center}
+.half{width:19em;aspect-ratio:1/2;flex:none}
+.half img{width:100%;height:100%;object-fit:cover}
+.half .ph{width:100%;height:100%;border-radius:999em 0 0 999em;
+  background:
+    radial-gradient(circle at 70% 30%,#d58a2e 0 6%,transparent 7%),
+    radial-gradient(circle at 40% 55%,#c97a22 0 8%,transparent 9%),
+    radial-gradient(circle at 75% 75%,#d9923a 0 7%,transparent 8%),
+    radial-gradient(circle at 30% 25%,#e2a454 0 5%,transparent 6%),
+    #efe4c6}
+.words{margin-left:1em;font-family:var(--round);line-height:.88}
+.w-auth{color:var(--orange);font-weight:900;font-size:5.2em;letter-spacing:-.04em}
+.w-auth small{font-size:.5em;vertical-align:.55em}
+.w-entic{display:flex;align-items:center;gap:.25em;color:var(--orange);font-weight:900;font-size:2.6em}
+.w-entic .lines{display:flex;flex-direction:column;gap:.18em}
+.w-entic .lines i{display:block;height:.1em;background:var(--white)}
+.w-entic .lines i:nth-child(1){width:3em}
+.w-entic .lines i:nth-child(2){width:2.2em;margin-left:.8em}
+.w-entic .lines i:nth-child(3){width:3em}
+.w-rolls{color:var(--white);font-weight:900;font-size:4em;letter-spacing:-.03em}
+.w-only{color:var(--orange);font-weight:500;font-size:3.1em;letter-spacing:-.03em;margin-top:.1em}
+.w-para{color:var(--white);font-weight:900;font-size:5.4em;letter-spacing:-.04em;margin-top:.06em}
+.w-thas{color:var(--white);font-weight:900;font-size:3.5em;letter-spacing:-.04em}
+.naan{margin-top:2.2em;display:flex;align-items:flex-end;font-family:var(--cond);line-height:.85;transform:rotate(-1deg)}
+.naan .no{color:var(--white);font-family:"Anton",sans-serif;font-size:5.4em}
+.naan .na{color:var(--orange);font-family:"Anton",sans-serif;font-size:6.3em;margin:0 .05em}
+.naan .se{color:var(--white);font-size:4.4em;align-self:flex-start;letter-spacing:.04em}
+
+
+/* ================= STORY (image) ================= */
+.story2{display:grid;grid-template-columns:576fr 615fr;gap:var(--rule);background:var(--white);border-bottom:var(--rule) solid var(--white)}
+.story2-cell{position:relative;background:#000;line-height:0}
+.story2-cell:first-child{background:#f58714}
+.story2-cell img{display:block;width:100%;height:auto}
+.story2-order{position:absolute;left:32%;top:93.8%;width:25.5%;height:4.4%}
+@media (max-width:820px){
+  .story2{grid-template-columns:1fr}
+  .story2-cell img{max-width:640px;margin:0 auto}
+}
+
+/* ================= OYE HOYE ================= */
+.box{background:#ff7f00;display:flex;justify-content:center;align-items:center;border-bottom:var(--rule) solid var(--white);padding:clamp(0px,3vw,48px) 0}
+.box img{display:block;width:100%;max-width:1200px;height:auto;aspect-ratio:1197/1209;object-fit:contain}
+.box .ph{width:100%;max-width:1000px;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;font-family:var(--cond);font-size:clamp(2rem,5vw,4rem);color:var(--ink);border:4px dashed var(--ink);margin:30px}
+
+/* ================= MENU ================= */
+.menu{background:var(--ink);padding:clamp(30px,4vw,50px) clamp(16px,4vw,60px) clamp(40px,5vw,70px)}
+.menu > h2{font-family:var(--cond);color:var(--orange);text-align:center;font-size:clamp(4.5rem,9vw,8rem);line-height:1;margin-bottom:clamp(20px,3vw,40px)}
+.cols{display:grid;grid-template-columns:1fr 8px 1fr;gap:clamp(24px,4vw,60px);max-width:1100px;margin:0 auto}
+.vrule{background:var(--orange);border-radius:8px}
+.cat{margin-bottom:clamp(40px,5vw,70px)}
+.cat:last-child{margin-bottom:0}
+.cat-h{text-align:center;margin-bottom:22px}
+.cat-h h3{font-family:var(--cond);color:var(--orange);font-size:clamp(2.8rem,4.6vw,3.6rem);line-height:1;font-weight:400}
+.cat-h::after{content:"";display:block;width:clamp(120px,15vw,190px);height:5px;background:var(--white);margin:6px auto 0}
+.cat-desc{color:var(--white);font-weight:800;font-size:.85rem;text-transform:uppercase;line-height:1.25;margin:0 0 22px}
+.row{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:5px 0}
+.row .n{color:var(--orange);font-weight:800;font-size:clamp(1rem,1.5vw,1.2rem);text-transform:uppercase;line-height:1.2}
+.row .p{color:var(--orange);font-weight:800;font-size:clamp(1rem,1.5vw,1.2rem);white-space:nowrap}
+.row .note{display:block;color:var(--white);font-size:.68rem;font-weight:800;margin-top:2px}
+.row.roomy{padding:9px 0}
+.gap{height:22px}
+.foot{color:var(--white);font-weight:800;font-size:.72rem;text-transform:uppercase;margin-top:16px}
+.joke{position:relative;display:inline-block}
+.joke s{text-decoration-thickness:2px}
+.joke em{position:absolute;right:-.2em;top:-1.15em;font-style:normal;color:var(--white);font-size:.85em;white-space:nowrap}
+
+/* ================= FIND US ================= */
+.find{background:var(--ink);padding:clamp(40px,6vw,60px) clamp(16px,8vw,70px);border-top:var(--rule) solid var(--white);border-bottom:var(--rule) solid var(--white)}
+.card{max-width:680px;margin:0 auto}
+.card iframe{display:block;width:100%;height:clamp(240px,40vw,350px);border:0;background:#f4f4f4}
+.card .body{background:var(--orange);color:var(--ink);padding:24px 18px 46px}
+.card h2{font-family:var(--cond);font-size:clamp(2.6rem,6vw,3.6rem);line-height:1;font-weight:400}
+.card .addr{font-family:var(--cond);font-size:clamp(1.4rem,3vw,1.9rem);margin:18px 0 26px;line-height:1.1}
+.actions{display:flex;align-items:center;gap:26px;flex-wrap:wrap}
+.btn{font-family:var(--cond);font-size:1.2rem;padding:6px 10px 4px;border-radius:4px;text-decoration:none;letter-spacing:.02em}
+.btn.dark{background:#222;color:var(--white);box-shadow:0 3px 8px rgba(0,0,0,.45)}
+.btn.light{background:#ececec;color:#222}
+.btn:hover{transform:translateY(-1px)}
+.phone{display:inline-flex;color:var(--ink)}
+.phone svg{width:34px;height:34px}
+
+/* ===== live + offline map ===== */
+.map-wrap{position:relative;background:#e9e4da}
+.map-wrap iframe{display:block}
+.offline-map{display:none;width:100%;height:clamp(240px,40vw,350px)}
+.offline-map svg{display:block;width:100%;height:100%}
+.card.offline .map-wrap iframe{display:none}
+.card.offline .offline-map{display:block}
+.net-badge{position:absolute;top:10px;left:10px;font-family:var(--cond);font-size:1rem;letter-spacing:.05em;padding:4px 10px 2px;border-radius:999px;background:var(--ink);color:#4ade80;pointer-events:none}
+.net-badge::before{content:"\25CF  "}
+.card.offline .net-badge{color:var(--orange)}
+.locate{margin-top:22px;padding-top:18px;border-top:2px dashed rgba(0,0,0,.35)}
+.locate .btn{border:0;cursor:pointer}
+.locate-btns{display:flex;flex-wrap:wrap;gap:12px}
+.btn.gmaps{display:inline-flex;align-items:center;gap:6px;background:var(--white);color:var(--ink);box-shadow:0 3px 8px rgba(0,0,0,.3)}
+.btn.gmaps svg{width:18px;height:18px;color:#ea4335}
+.map-open{position:absolute;top:10px;right:10px;font-family:var(--cond);font-size:1rem;letter-spacing:.05em;padding:5px 10px 3px;border-radius:999px;background:var(--white);color:var(--ink);text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,.35)}
+.map-open:hover{background:var(--orange)}
+@media (max-width:420px){.locate-btns .btn{flex:1 1 100%;justify-content:center;text-align:center}.net-badge,.map-open{font-size:.8rem;padding:4px 8px 2px}}
+.locate .btn[disabled]{opacity:.55;cursor:wait}
+.locate-msg{margin-top:10px;font-weight:800;font-size:.9rem;line-height:1.35}
+
+/* ================= FOLLOW ================= */
+.follow{background:var(--orange);color:var(--ink);text-align:center;padding:clamp(60px,8vw,80px) 20px clamp(60px,8vw,80px)}
+.follow h2{font-family:var(--cond);font-size:clamp(4.5rem,10vw,7rem);line-height:1;font-weight:400;margin-bottom:clamp(40px,6vw,60px)}
+.socials{display:flex;justify-content:center;gap:46px}
+.socials a{display:inline-flex}
+.socials svg{width:64px;height:64px}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width:820px){
+  html{scroll-padding-top:74px}
+  .nav-inner{padding:14px 18px}
+  .links{display:none}
+  .burger{width:44px;gap:8px}
+  .hero{grid-template-columns:1fr;gap:34px;padding:56px 22px 60px}
+  .vbar{width:120px;height:6px}
+  .story{grid-template-columns:1fr}
+  .graphic{font-size:2.55vw;padding:40px 18px}
+  .cols{grid-template-columns:1fr}
+  .vrule{display:none}
+  .socials svg{width:56px;height:56px}
+}
+
+/* ================= DESI INTERACTIONS ================= */
+.row.addable{cursor:pointer;border-radius:6px;margin:0 -8px;padding-left:8px;padding-right:8px;transition:background .15s}
+.row.addable:hover,.row.addable:focus-visible{background:rgba(245,135,20,.12);outline:none}
+.row.addable .p::before{content:"+ ";opacity:0;transition:opacity .15s}
+.row.addable:hover .p::before,.row.addable:focus-visible .p::before{opacity:1}
+.row.pop{animation:rowpop .35s ease}
+@keyframes rowpop{40%{background:rgba(245,135,20,.35)}}
+.joke:hover em{animation:wiggle .5s ease infinite}
+@keyframes wiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-6deg)}75%{transform:rotate(6deg)}}
+.wordmark{cursor:pointer;user-select:none}
+.wordmark.bump{animation:bump .3s ease}
+@keyframes bump{50%{transform:rotate(-7deg) scale(1.05)}}
+
+.toast-wrap{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);z-index:70;display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none;width:min(92vw,460px)}
+.toast{background:var(--white);color:var(--ink);font-weight:800;font-size:.95rem;padding:12px 18px;border-radius:12px;border-left:6px solid var(--orange);box-shadow:0 8px 24px rgba(0,0,0,.45);animation:tin .25s ease;text-align:center}
+.toast.out{animation:tout .25s ease forwards}
+@keyframes tin{from{opacity:0;transform:translateY(12px)}}
+@keyframes tout{to{opacity:0;transform:translateY(12px)}}
+
+.plate-pill{position:fixed;right:18px;bottom:18px;z-index:60;display:none;align-items:center;gap:10px;background:var(--orange);color:var(--ink);border:3px solid var(--ink);border-radius:999px;padding:10px 18px;font-family:var(--cond);font-size:1.35rem;letter-spacing:.03em;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.5)}
+.plate-pill.show{display:flex}
+.plate-pill .cnt{background:var(--ink);color:var(--orange);border-radius:999px;min-width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;font-size:1.05rem;padding:0 6px}
+.plate-pill.jiggle{animation:bump .3s ease}
+
+.plate-panel{position:fixed;right:18px;bottom:84px;z-index:61;width:min(92vw,380px);max-height:70vh;display:none;flex-direction:column;background:var(--ink);border:3px solid var(--orange);border-radius:16px;overflow:hidden;box-shadow:0 12px 32px rgba(0,0,0,.6)}
+.plate-panel.open{display:flex}
+.pp-head{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:var(--orange);color:var(--ink)}
+.pp-head h3{font-family:var(--cond);font-size:1.8rem;font-weight:400;line-height:1}
+.pp-x{background:none;border:0;font-size:1.6rem;line-height:1;cursor:pointer;color:var(--ink)}
+.pp-list{list-style:none;overflow-y:auto;padding:8px 16px;flex:1}
+.pp-list li{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #2a2a2a;font-weight:700;font-size:.9rem;text-transform:uppercase}
+.pp-list .nm{flex:1;color:var(--white)}
+.pp-list .qt{display:flex;align-items:center;gap:6px}
+.pp-list button{width:26px;height:26px;border-radius:50%;border:2px solid var(--orange);background:none;color:var(--orange);font-weight:800;cursor:pointer;line-height:1}
+.pp-list .pr{color:var(--orange);min-width:56px;text-align:right}
+.pp-foot{padding:12px 16px 16px;border-top:2px solid #2a2a2a}
+.pp-total{display:flex;justify-content:space-between;font-family:var(--cond);font-size:1.7rem;color:var(--white)}
+.pp-note{color:#9a9a9a;font-size:.72rem;font-weight:700;margin:2px 0 12px}
+.pp-actions{display:flex;gap:10px}
+.pp-actions a,.pp-actions button{flex:1;text-align:center;font-family:var(--cond);font-size:1.25rem;padding:9px 10px 7px;border-radius:8px;text-decoration:none;cursor:pointer;border:0}
+.pp-call{background:var(--orange);color:var(--ink)}
+.pp-clear{background:#2a2a2a;color:var(--white)}
+
+.chai-top{position:fixed;left:18px;bottom:18px;z-index:60;display:flex;flex-direction:column;align-items:center;gap:2px;background:var(--ink);border:3px solid var(--orange);border-radius:14px;padding:8px 10px 6px;color:var(--orange);cursor:pointer;opacity:0;transform:translateY(20px);pointer-events:none;transition:opacity .25s,transform .25s}
+.chai-top.show{opacity:1;transform:none;pointer-events:auto}
+.chai-top svg{width:30px;height:30px}
+.chai-top span{font-family:var(--cond);font-size:.95rem;letter-spacing:.04em}
+.chai-top .steam{animation:steam 1.8s ease-in-out infinite}
+@keyframes steam{0%,100%{opacity:.3;transform:translateY(1px)}50%{opacity:1;transform:translateY(-1px)}}
+
+.ruko{position:fixed;inset:0;z-index:90;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;padding:20px}
+.ruko.open{display:flex}
+.ruko-card{background:var(--orange);color:var(--ink);border:4px solid var(--ink);border-radius:18px;max-width:440px;width:100%;padding:28px 24px;text-align:center;box-shadow:10px 10px 0 #000;animation:tin .3s ease}
+.ruko-card h3{font-family:var(--cond);font-size:clamp(2.4rem,7vw,3.4rem);font-weight:400;line-height:1}
+.ruko-card p{font-weight:800;margin:12px 0 20px}
+.ruko-card .btns{display:flex;flex-direction:column;gap:10px}
+.ruko-card a,.ruko-card button{font-family:var(--cond);font-size:1.35rem;padding:10px;border-radius:10px;border:0;cursor:pointer;text-decoration:none}
+.ruko-card .yes{background:var(--ink);color:var(--orange)}
+.ruko-card .no{background:transparent;color:var(--ink);text-decoration:underline}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+@media (max-width:820px){
+  .toast-wrap{bottom:auto;top:86px}
+  .chai-top{left:12px;bottom:12px;padding:8px}
+  .chai-top span{display:none}
+  .plate-pill{right:12px;bottom:12px;font-size:1.2rem;padding:9px 14px}
+  .plate-panel{right:12px;bottom:76px;max-height:62vh}
+}
+body.plate-open .chai-top{opacity:0;pointer-events:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}*{animation:none!important}}
+</style>
+</head>
+<body>
+
+<!-- distressed texture used by the grunge headings -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="distress" x="-5%" y="-5%" width="110%" height="110%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="3" result="warp"/>
+    <feDisplacementMap in="SourceGraphic" in2="warp" scale="3" xChannelSelector="R" yChannelSelector="G" result="rough"/>
+    <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="8" result="grain"/>
+    <feColorMatrix in="grain" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -7 0 0 0 4.75" result="mask"/>
+    <feComposite in="rough" in2="mask" operator="in"/>
+  </filter>
+</svg>
+
+<!-- FULL-SCREEN MENU -->
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="Site menu">
+  <div class="ov-top">
+    <a href="#top" class="logo" data-close aria-label="Home">
+      <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M3 12h7"/><path d="M12 8h7M12 11h7M12 14h7M12 17h5"/></svg></span>
+      <span class="word" data-bind="name"></span>
+      <span class="sub" data-bind="subline"></span>
+    </a>
+    <button class="ov-close" id="ov-close" aria-label="Close menu"></button>
+  </div>
+  <ul class="ov-links">
+    <li><a class="ov-big distress" href="#story" data-close>OUR STORY</a></li>
+    <li><a class="ov-big distress" href="#menu" data-close>MENU</a></li>
+    <li class="ov-order">
+      <span class="ov-big distress">ORDER NOW :</span>
+      <div class="tiles">
+        <a class="tile" id="pickup" data-close>
+          <span class="sq pickup">IN<br>STORE</span>
+          <span class="lbl distress">PICKUP</span>
+        </a>
+        <a class="tile" id="delivery" target="_blank" rel="noopener">
+          <span class="sq delivery" id="delivery-sq">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1.2 11.2a1 1 0 0 1-1 .8H7.2a1 1 0 0 1-1-.8z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg>
+          </span>
+          <span class="lbl distress">DELIVERY</span>
+        </a>
+      </div>
+    </li>
+    <li><a class="ov-big distress" href="#find" data-close>FIND US</a></li>
+    <li><a class="ov-big distress" href="#follow" data-close>SOCIALS</a></li>
+  </ul>
+</div>
+
+<div class="site">
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#top" class="logo" aria-label="Home">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M3 12h7"/><path d="M12 8h7M12 11h7M12 14h7M12 17h5"/></svg></span>
+        <span class="word" data-bind="name"></span>
+        <span class="sub" data-bind="subline"></span>
+      </a>
+      <ul class="links">
+        <li><a href="#menu">MENU</a></li>
+        <li><a href="#find">ORDER NOW</a></li>
+        <li><a href="#find">FIND US</a></li>
+      </ul>
+      <button class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="overlay" id="burger"><span></span><span></span></button>
+    </div>
+    <div class="hr"></div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero" id="top">
+    <h1 class="wordmark distress">
+      <span class="l1" data-bind="heroLine1"></span>
+      <span class="l2" data-bind="heroLine2"></span>
+    </h1>
+    <div class="vbar" aria-hidden="true"></div>
+    <div class="tag">
+      <p class="t1">NOW THAT YOU ARE HERE</p>
+      <p class="t2 distress">KHANA KHA K JANA<br>HAAN!*</p>
+      <p class="t3"><b>*</b>(DO EAT BEFORE LEAVING)</p>
+    </div>
+  </header>
+
+  <!-- OUR STORY -->
+  <section class="story2" id="story">
+    <div class="story2-cell">
+      <img src="images/our-story.png" width="576" height="956" alt="Our Story">
+      <a class="story2-order" href="#find" aria-label="Order now"></a>
+    </div>
+    <div class="story2-cell">
+      <img src="images/no-naan-sense.png" width="615" height="956" alt="Authentic rolls are only made in parathas. No naan sense!">
+    </div>
+  </section>
+
+  <!-- OYE HOYE BOX -->
+  <section class="box" id="box"></section>
+
+  <!-- MENU -->
+  <section class="menu" id="menu">
+    <h2 class="distress">MENU</h2>
+    <div class="cols">
+      <div>
+        <div class="cat">
+          <div class="cat-h"><h3>PARATHA ROLLS</h3></div>
+          <p class="cat-desc">Freshly grilled boneless meat &amp; sliced red onions in our freshly made paratha bread</p>
+          <div class="row"><span class="n">Tikka Chutney Roll</span><span class="p">12.25</span></div>
+          <div class="row"><span class="n">Tikka G-Mayo Roll</span><span class="p">12.25</span></div>
+          <div class="row"><span class="n">Tikka Special* Roll</span><span class="p">12.75</span></div>
+          <div class="gap"></div>
+          <div class="row"><span class="n">Malai Chutney Roll</span><span class="p">11.75</span></div>
+          <div class="row"><span class="n">Malai G-Mayo Roll</span><span class="p">12.25</span></div>
+          <div class="row"><span class="n">Malai Special* Roll</span><span class="p">12.75</span></div>
+          <div class="gap"></div>
+          <div class="row"><span class="n">Beef Bihari Roll</span><span class="p">12.99</span></div>
+          <div class="gap"></div>
+          <div class="row"><span class="n">Combo Add On<br>(Masala Fries + Pop)</span><span class="p">5.99</span></div>
+          <div class="row"><span class="n">Upgrade Fries: Garlic Mayo</span><span class="p">0.99</span></div>
+          <div class="row"><span class="n">Upgrade Fries: Chipotle Garlic Mayo</span><span class="p">1.49</span></div>
+        </div>
+
+        <div class="cat">
+          <div class="cat-h"><h3>SHAREABLES</h3></div>
+          <div class="row"><span class="n">Chicken Tikka Nachos</span><span class="p">15.49</span></div>
+          <div class="row"><span class="n">Chaat Papdi</span><span class="p">8.49</span></div>
+          <div class="row"><span class="n">Dahi Puri (7 Pieces)</span><span class="p">8.49</span></div>
+        </div>
+
+        <div class="cat">
+          <div class="cat-h"><h3>BEVERAGES</h3></div>
+          <div class="row"><span class="n">Water</span><span class="p">0.99</span></div>
+          <div class="row"><span class="n">Pop Can</span><span class="p">1.79</span></div>
+          <div class="row"><span class="n">Pakola</span><span class="p">2.49</span></div>
+          <div class="row"><span class="n">3 Pack of Pop</span><span class="p">4.99</span></div>
+          <div class="row"><span class="n">Karak Chai</span><span class="p">2.99</span></div>
+          <div class="row"><span class="n">Shezan Mango Juice</span><span class="p">1.99</span></div>
+          <div class="row"><span class="n">Barbican</span><span class="p">3.99</span></div>
+        </div>
+      </div>
+
+      <div class="vrule" aria-hidden="true"></div>
+
+      <div>
+        <div class="cat">
+          <div class="cat-h"><h3>SANDWICHES</h3></div>
+          <div class="row roomy"><span class="n">Chicken Club Sandwich<span class="note">(SERVED WITH FRIES AND CHIPOTLE DIP)</span></span><span class="p">17.49</span></div>
+          <div class="row roomy"><span class="n">Chicken Grilled Cheese Sandwich<span class="note">(SERVED WITH FRIES)</span></span><span class="p">13.99</span></div>
+          <div class="row roomy" style="padding-top:22px"><span class="n">Chicken Tikka <span class="joke"><em>KAISA DIYA?</em><s>Quesadilla</s></span><span class="note">(SERVED WITH SALSA AND CHIPOTLE DIP)</span></span><span class="p">13.99</span></div>
+          <div class="row roomy"><span class="n">Vegetarian Quesadilla<span class="note">(SERVED WITH SALSA AND CHIPOTLE DIP)</span></span><span class="p">11.59</span></div>
+          <div class="row roomy"><span class="n">Bun Kabab<span class="note">(DAAL AND AALO DIPPED IN EGG**)</span></span><span class="p">8.49</span></div>
+          <p class="foot">**Eggless option available. Ask staff while ordering</p>
+        </div>
+
+        <div class="cat">
+          <div class="cat-h"><h3>FRIES</h3></div>
+          <div class="row"><span class="n">Masala Fries</span><span class="p">5.25</span></div>
+          <div class="row"><span class="n">Plain Fries</span><span class="p">5.25</span></div>
+          <div class="row"><span class="n">Masala Garlic Mayo</span><span class="p">5.99</span></div>
+          <div class="row"><span class="n">Plain Garlic Mayo</span><span class="p">5.99</span></div>
+          <div class="row"><span class="n">Masala Chipotle Garlic*</span><span class="p">6.75</span></div>
+          <div class="row"><span class="n">Plain Chipotle Garlic</span><span class="p">6.75</span></div>
+          <p class="foot">*Bestseller</p>
+        </div>
+
+        <div class="cat">
+          <div class="cat-h"><h3>DESSERTS</h3></div>
+          <div class="row roomy"><span class="n">Malai Kulfi</span><span class="p">4.75</span></div>
+          <div class="row roomy"><span class="n">Ice Cream Falooda</span><span class="p">8.49</span></div>
+        </div>
+
+        <div class="cat">
+          <div class="cat-h"><h3>SIDES</h3></div>
+          <div class="row roomy"><span class="n">Dipping Sauce<span class="note">(GREEN CHUTNEY, GARLIC MAYO, CHIPOTLE, SALSA &amp; IMLI CHUTNEY)</span></span><span class="p">0.70</span></div>
+          <div class="row roomy"><span class="n">Plain Paratha</span><span class="p">3.49</span></div>
+          <div class="row roomy"><span class="n">Tikka Boti Skewer</span><span class="p">9.49</span></div>
+          <div class="row roomy"><span class="n">Malai Boti Skewer</span><span class="p">9.49</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FIND US -->
+  <section class="find" id="find">
+    <div class="card">
+      <div class="map-wrap" id="mapWrap">
+        <iframe id="map" loading="lazy" title="Map" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        <div class="offline-map" id="offlineMap" aria-label="Offline map"></div>
+        <span class="net-badge" id="netBadge">LIVE MAP</span>
+        <a class="map-open" id="mapOpen" target="_blank" rel="noopener" aria-label="Open in Google Maps">OPEN IN MAPS &#8599;</a>
+      </div>
+      <div class="body">
+        <h2 class="distress" data-bind="locationTitle"></h2>
+        <p class="addr distress" data-bind="address"></p>
+        <div class="actions">
+          <a class="btn dark" id="directions" target="_blank" rel="noopener">DIRECTIONS</a>
+          <a class="btn light" id="order">ORDER NOW</a>
+          <a class="phone" id="phone" aria-label="Call us">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>
+          </a>
+        </div>
+        <div class="locate">
+          <div class="locate-btns">
+            <button class="btn dark" id="locateBtn">KITNA DOOR? &rarr; SHOW MY ROUTE</button>
+            <a class="btn gmaps" id="gmapsOpen" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+              OPEN IN GOOGLE MAPS
+            </a>
+          </div>
+          <p class="locate-msg" id="locateMsg" aria-live="polite">Tap to see how far you are. We only use your location on this device.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOLLOW US -->
+  <section class="follow" id="follow">
+    <h2 class="distress">FOLLOW US!</h2>
+    <div class="socials">
+      <a id="fb" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="31" fill="#000"/><path fill="#fff" d="M36 64V40h7l1.2-8.5H36v-5.4c0-2.4.8-4.1 4.3-4.1h4.4v-7.6c-.8-.1-3.4-.4-6.4-.4-6.3 0-10.6 3.8-10.6 10.9v6.6H20.6V40h7.1v24z"/></svg>
+      </a>
+      <a id="ig" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 64 64" fill="none" stroke="#000" stroke-width="5.5"><rect x="5" y="5" width="54" height="54" rx="15"/><circle cx="32" cy="32" r="12.5"/><circle cx="47.5" cy="16.5" r="2" fill="#000" stroke="none"/></svg>
+      </a>
+    </div>
+  </section>
+
+</div>
+
+<script>
+const BOX_IMG = "images/oye-hoye-box.jpg";
+/* =====================================================================
+   YOUR DETAILS. Fill these in; everything else is already built.
+   Image files go in an "images" folder next to this index.html.
+   ===================================================================== */
+const SITE = {
+  name: "YEH CHEEZ!",                 // nav logo wordmark
+  subline: "PAKISTANI EATERY",
+  heroLine1: "YEH",                  // big rotated wordmark, line 1
+  heroLine2: "CHEEZ!",                 // line 2
+  story: [                            // paste your Our Story paragraphs
+    "Paste paragraph one of your story here.",
+    "Paste paragraph two here.",
+    "Paste paragraph three here.",
+    "Paste paragraph four here."
+  ],
+  parathaImage: "",                   // e.g. "images/paratha-half.png" (left half of the round paratha)
+  boxImage: BOX_IMG,                  // Oye Hoye box image (embedded below)
+  locationTitle: "YEH CHEEZ!  MILTON",
+  address: "81 James Snow Pkwy N #4, Milton, ON L9E 0H3",
+  mapQuery: "Yeh Cheez, 81 James Snow Pkwy N #4, Milton, ON L9E 0H3",
+  lat: null,                         // restaurant latitude  (placeholder: Milton centre). In Google Maps, right-click your pin to copy exact numbers
+  lng: null,                        // restaurant longitude (placeholder)
+  phone: "000-000-0000",
+  orderUrl: "",                       // card's ORDER NOW: your ordering link, or "" to call
+  pickupUrl: "#find",                 // IN STORE / PICKUP tile: "#find" scrolls to the map card, or paste an online-ordering link
+  deliveryUrl: "#",                   // DELIVERY tile: paste your delivery-app store link
+  deliveryLogo: "",                   // optional: e.g. "images/delivery-badge.png" (the official badge from your delivery partner)
+  facebook: "#",
+  instagram: "#"
+};
+/* ===================== no need to edit below ===================== */
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+document.title = SITE.name;
+document.querySelectorAll('[data-bind]').forEach(el => el.textContent = SITE[el.dataset.bind] ?? "");
+
+
+const boxPh = `<div class="ph">OYE HOYE BOX IMAGE</div>`;
+$('#box').innerHTML = SITE.boxImage
+  ? `<img src="${esc(SITE.boxImage)}" alt="Oye Hoye Box" onerror="this.outerHTML=boxPh">` : boxPh;
+
+const q = encodeURIComponent(SITE.mapQuery);
+$('#directions').href = `https://www.google.com/maps/dir/?api=1&destination=${q}`;
+const tel = "tel:" + SITE.phone.replace(/[^\d+]/g, "");
+$('#phone').href = tel;
+const order = $('#order');
+if (SITE.orderUrl) { order.href = SITE.orderUrl; order.target = "_blank"; order.rel = "noopener"; }
+else order.href = tel;
+$('#fb').href = SITE.facebook;
+$('#ig').href = SITE.instagram;
+
+// order tiles
+const pickup = $('#pickup');
+pickup.href = SITE.pickupUrl || "#find";
+if (!pickup.getAttribute('href').startsWith('#')) { pickup.target = "_blank"; pickup.rel = "noopener"; }
+$('#delivery').href = SITE.deliveryUrl || "#";
+if (SITE.deliveryLogo) $('#delivery-sq').innerHTML = `<img src="${esc(SITE.deliveryLogo)}" alt="Delivery">`;
+
+// full-screen hamburger menu
+const burger = $('#burger'), overlay = $('#overlay');
+const setMenu = open => {
+  overlay.classList.toggle('open', open);
+  document.body.classList.toggle('noscroll', open);
+  burger.setAttribute('aria-expanded', open);
+  if (open) $('#ov-close').focus(); else burger.focus({preventScroll:true});
+};
+burger.addEventListener('click', () => setMenu(true));
+$('#ov-close').addEventListener('click', () => setMenu(false));
+overlay.querySelectorAll('[data-close]').forEach(a => a.addEventListener('click', () => setMenu(false)));
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.classList.contains('open')) setMenu(false); });
+</script>
+
+<script>
+/* ===== LIVE GOOGLE MAP + OFFLINE FALLBACK ===== */
+(() => {
+  const S = SITE, $ = s => document.querySelector(s);
+  const card = $('.find .card'), frame = $('#map'), badge = $('#netBadge'), msg = $('#locateMsg'), btn = $('#locateBtn');
+  const hasCoords = typeof S.lat === 'number' && typeof S.lng === 'number';
+  const dest = hasCoords ? `${S.lat},${S.lng}` : S.mapQuery;
+  const store = { get(k){ try { return JSON.parse(localStorage.getItem(k)); } catch(e){ return null; } },
+                  set(k,v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} } };
+  let origin = null, online = navigator.onLine;
+
+  /* --- live map --- */
+  const embedUrl = () => origin
+    ? `https://www.google.com/maps?saddr=${origin.lat},${origin.lng}&daddr=${encodeURIComponent(dest)}&output=embed`
+    : `https://www.google.com/maps?q=${encodeURIComponent(dest)}&z=16&output=embed`;
+  const dirUrl = () => `https://www.google.com/maps/dir/?api=1${origin ? `&origin=${origin.lat},${origin.lng}` : ''}&destination=${encodeURIComponent(dest)}`;
+  const enc = encodeURIComponent;
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const isAndroid = /Android/i.test(navigator.userAgent);
+  const placeUrl = () => origin ? dirUrl() : `https://www.google.com/maps/search/?api=1&query=${enc(dest)}`;
+  const setJumpLinks = () => {
+    const web = placeUrl();
+    ['#gmapsOpen', '#mapOpen'].forEach(sel => {
+      const a = $(sel); a.href = web;
+      if (isAndroid) {
+        // Android: open the Google Maps app directly; falls back to the browser if it isn't installed
+        const q = origin ? `google.navigation:q=${enc(dest)}` : `geo:0,0?q=${enc(dest)}`;
+        a.href = `intent:${q}#Intent;package=com.google.android.apps.maps;S.browser_fallback_url=${enc(web)};end`;
+        a.removeAttribute('target');
+      }
+      // iOS and desktop: Google's universal link opens the app when installed, otherwise the browser
+    });
+  };
+  const loadLive = () => { const u = embedUrl(); if (frame.src !== u) frame.src = u; $('#directions').href = dirUrl(); };
+
+  /* --- maths --- */
+  const rad = d => d * Math.PI / 180;
+  const distKm = (a, b) => { const R = 6371, dLat = rad(b.lat - a.lat), dLng = rad(b.lng - a.lng);
+    const h = Math.sin(dLat/2)**2 + Math.cos(rad(a.lat)) * Math.cos(rad(b.lat)) * Math.sin(dLng/2)**2;
+    return 2 * R * Math.asin(Math.sqrt(h)); };
+  const bearing = (a, b) => { const y = Math.sin(rad(b.lng - a.lng)) * Math.cos(rad(b.lat));
+    const x = Math.cos(rad(a.lat)) * Math.sin(rad(b.lat)) - Math.sin(rad(a.lat)) * Math.cos(rad(b.lat)) * Math.cos(rad(b.lng - a.lng));
+    return (Math.atan2(y, x) * 180 / Math.PI + 360) % 360; };
+  const quip = km => km < 1 ? 'Arre, bilkul paas ho! Chappal pehno aur aa jao.'
+    : km < 5 ? 'Bas thora sa door. Rolls garam mil jayenge.'
+    : km < 20 ? 'Chhoti si drive. Playlist lagao, bhook barhao.'
+    : km < 80 ? 'Road trip! Itni door se aa rahe ho toh combo banta hai.'
+    : 'Itni door se? Pyaar ho toh aisa. Delivery check kar lo!';
+  const eta = km => { const road = km * 1.3; // straight line → rough road distance
+    return road < 1.5 ? `~${Math.max(2, Math.round(road / 5 * 60))} min walk` : `~${Math.max(3, Math.round(road / (road < 10 ? 35 : road < 30 ? 55 : 80) * 60 + 3))} min drive`; };
+
+  /* --- offline drawn map --- */
+  const drawOffline = () => {
+    const last = store.get('ycLastSpot');
+    let you = '';
+    if (last && hasCoords) {
+      const km = distKm(last, S), b = bearing(S, last) * Math.PI / 180;
+      const r = Math.min(150, 50 + km * 6), x = 300 + Math.sin(b) * r, y = 175 - Math.cos(b) * r * .75;
+      you = `<line x1="300" y1="175" x2="${x}" y2="${y}" stroke="#111" stroke-width="3" stroke-dasharray="8 7"/>
+        <circle cx="${x}" cy="${y}" r="11" fill="#2563eb" stroke="#fff" stroke-width="4"/>
+        <text x="${x}" y="${y - 20}" text-anchor="middle" font-family="Inter Tight,sans-serif" font-weight="800" font-size="15" fill="#111">AAP · ${km.toFixed(1)} KM</text>`;
+    }
+    const roads = [];
+    for (let i = 0; i < 9; i++) roads.push(`<line x1="${i*80-40}" y1="0" x2="${i*80+40}" y2="350" stroke="#fff" stroke-width="7"/>`);
+    for (let j = 0; j < 6; j++) roads.push(`<line x1="0" y1="${j*70+20}" x2="600" y2="${j*70-10}" stroke="#fff" stroke-width="7"/>`);
+    $('#offlineMap').innerHTML = `<svg viewBox="0 0 600 350" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Offline map showing the restaurant">
+      <rect width="600" height="350" fill="#ece6da"/>
+      <rect x="400" y="230" width="150" height="90" rx="10" fill="#cfe6c3"/>
+      <path d="M0 290 Q150 250 240 300 T600 270 V350 H0z" fill="#bcd9f2"/>
+      ${roads.join('')}
+      <line x1="-20" y1="40" x2="640" y2="330" stroke="#f9d27a" stroke-width="16"/>
+      ${you}
+      <g transform="translate(300 175)">
+        <circle r="30" fill="#f58714" opacity=".25"><animate attributeName="r" values="18;36;18" dur="2.4s" repeatCount="indefinite"/></circle>
+        <path d="M0 0 C-14 -18 -20 -28 -20 -38 a20 20 0 0 1 40 0 c0 10 -6 20 -20 38z" fill="#f58714" stroke="#111" stroke-width="3"/>
+        <circle cy="-38" r="7" fill="#111"/>
+      </g>
+      <rect x="12" y="300" width="576" height="40" rx="8" fill="#111" opacity=".88"/>
+      <text x="300" y="326" text-anchor="middle" font-family="Inter Tight,sans-serif" font-weight="800" font-size="15" fill="#fff">OFFLINE MAP · ${String(S.address).replace(/[<&>]/g,'')}</text>
+    </svg>`;
+  };
+
+  /* --- online / offline switching --- */
+  const setMode = isOnline => {
+    setJumpLinks();
+    online = isOnline;
+    card.classList.toggle('offline', !isOnline);
+    badge.textContent = isOnline ? 'LIVE MAP' : 'OFFLINE MAP';
+    if (isOnline) loadLive();
+    else { drawOffline(); msg.textContent = 'Internet gaya? Koi baat nahi, hum wahin hain. Call karo ya address note kar lo.'; }
+  };
+  const probe = () => new Promise(res => {
+    if (!navigator.onLine) return res(false);
+    const t = setTimeout(() => res(false), 5000);
+    fetch('https://www.google.com/generate_204', { mode: 'no-cors', cache: 'no-store' })
+      .then(() => { clearTimeout(t); res(true); }, () => { clearTimeout(t); res(false); });
+  });
+  const check = () => probe().then(setMode);
+  addEventListener('online', check);
+  addEventListener('offline', () => setMode(false));
+  setInterval(() => { if (!document.hidden) check(); }, 30000);
+  setMode(navigator.onLine); check();
+
+  /* --- visitor's location --- */
+  const showDistance = (pos, fromCache) => {
+    if (!hasCoords) { msg.textContent = 'Route ready on the map.'; return; }
+    const km = distKm(pos, S);
+    msg.textContent = `${fromCache ? 'Last time you were' : 'You are'} about ${km.toFixed(1)} km away (${eta(km)}, roughly). ${quip(km)}`;
+  };
+  const last = store.get('ycLastSpot');
+  if (last) showDistance(last, true);
+
+  btn.addEventListener('click', () => {
+    if (!('geolocation' in navigator)) { msg.textContent = 'Is device pe location available nahi. Directions button try karo!'; return; }
+    btn.disabled = true; msg.textContent = 'Dhoond rahe hain aapko...';
+    navigator.geolocation.getCurrentPosition(p => {
+      btn.disabled = false;
+      origin = { lat: +p.coords.latitude.toFixed(5), lng: +p.coords.longitude.toFixed(5) };
+      store.set('ycLastSpot', { ...origin, t: Date.now() });
+      showDistance(origin, false);
+      setJumpLinks();
+      if (online) loadLive(); else drawOffline();
+    }, err => {
+      btn.disabled = false;
+      msg.textContent = err.code === 1
+        ? 'Location ki ijazat nahi mili. Koi baat nahi, Directions button se Google Maps khol lo.'
+        : 'Location nahi mil saki. Thori der mein dobara try karo.';
+    }, { enableHighAccuracy: true, timeout: 12000, maximumAge: 60000 });
+  });
+
+  /* --- offline caching (works once hosted on https) --- */
+  if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
+    addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
+  }
+})();
+</script>
+
+<!-- ===== DESI INTERACTIONS ===== -->
+<div class="toast-wrap" id="toasts" aria-live="polite"></div>
+<button class="plate-pill" id="platePill" aria-controls="platePanel" aria-expanded="false">
+  MERI PLATE <span class="cnt" id="pillCnt">0</span> <span id="pillTot">$0.00</span>
+</button>
+<div class="plate-panel" id="platePanel" role="dialog" aria-label="Meri Plate">
+  <div class="pp-head"><h3>MERI PLATE</h3><button class="pp-x" id="ppClose" aria-label="Close">&times;</button></div>
+  <ul class="pp-list" id="ppList"></ul>
+  <div class="pp-foot">
+    <div class="pp-total"><span>TOTAL</span><span id="ppTot">$0.00</span></div>
+    <p class="pp-note">Before tax. Read it out when you call &mdash; we'll handle the rest.</p>
+    <div class="pp-actions"><a class="pp-call" id="ppCall" href="#">CALL TO ORDER</a><button class="pp-clear" id="ppClear">CLEAR</button></div>
+  </div>
+</div>
+<button class="chai-top" id="chaiTop" aria-label="Back to top">
+  <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path class="steam" d="M11 3c-1 1.5 1 2.5 0 4M16 3c-1 1.5 1 2.5 0 4M21 3c-1 1.5 1 2.5 0 4"/>
+    <path d="M6 11h18v8a7 7 0 0 1-7 7h-4a7 7 0 0 1-7-7z"/><path d="M24 13h2a3 3 0 0 1 0 6h-2"/><path d="M5 29h21"/>
+  </svg>
+  <span>UPAR CHALO</span>
+</button>
+<div class="ruko" id="ruko" role="dialog" aria-modal="true" aria-labelledby="rukoH">
+  <div class="ruko-card">
+    <h3 id="rukoH">ARRE RUKO!</h3>
+    <p>Khana kha k jana haan! Ammi ne specially kaha tha &mdash; bina khaye koi nahi jata.</p>
+    <div class="btns">
+      <a class="yes" href="#menu" id="rukoYes">THEEK HAI, MENU DIKHAO</a>
+      <button class="no" id="rukoNo">Bas dekh raha tha&hellip;</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const phone = (typeof SITE !== 'undefined' && SITE.phone) ? SITE.phone : '';
+  const telHref = 'tel:' + phone.replace(/[^\d+]/g, '');
+  const pick = a => a[Math.floor(Math.random() * a.length)];
+  const store = { get(k){ try { return sessionStorage.getItem(k); } catch(e){ return null; } },
+                  set(k,v){ try { sessionStorage.setItem(k,v); } catch(e){} } };
+
+  /* ---- toasts ---- */
+  const toasts = $('#toasts');
+  const toast = msg => {
+    const t = document.createElement('div'); t.className = 'toast'; t.textContent = msg;
+    toasts.appendChild(t);
+    while (toasts.children.length > 2) toasts.firstChild.remove();
+    setTimeout(() => { t.classList.add('out'); setTimeout(() => t.remove(), 260); }, 2600);
+  };
+
+  /* ---- quips ---- */
+  const QUIPS = {
+    'PARATHA ROLLS': ['Roll in! Paratha fresh hai, naan wala scene nahi.', 'Asli roll, asli paratha. No naan-sense.', 'Karachi wali feeling aa gayi na?'],
+    'SANDWICHES':    ['Club sandwich: double decker, double khushi.', 'Kaisa diya? Bohot acha diya.', 'Sandwich bhi, fries bhi. Full paisa vasool.'],
+    'FRIES':         ['Masala thora extra? Hum mana nahi karenge.', 'Fries ke bina order? Toba toba.', 'Chipotle garlic... aap toh expert nikle!'],
+    'SHAREABLES':    ["Shareable likha hai... par hum kisi ko nahi batayenge.", 'Chaat ka mood? Dil khush kar diya.', 'Share karna hai toh karo, warna koi baat nahi.'],
+    'BEVERAGES':     ['Chai ke bina order adhoora hai.', 'Pakola! Aap pakke Karachi wale ho.', 'Thanda ya garam, dono chalega.'],
+    'DESSERTS':      ['Meetha toh banta hai.', 'Kulfi: diet kal se. Pakka.', 'Falooda le liya? Shabaash beta.'],
+    'SIDES':         ['Extra chutney? Smart move.', 'Ek aur paratha... kyun nahi?', 'Side dish, main character energy.']
+  };
+  const GENERIC = ['Wah! Ammi proud hongi.', 'Plate bhar rahi hai, dil bhi.', 'Bohot khoob!'];
+  const MILESTONES = { 5: 'Itna khana? Shaadi ka order lag raha hai!', 10: 'Poora khandaan aa raha hai kya?', 15: 'Bhai, catering chahiye toh call kar lo!' };
+
+  /* ---- plate ---- */
+  const plate = new Map();
+  const money = n => '$' + n.toFixed(2);
+  const itemName = row => {
+    const n = row.querySelector('.n').cloneNode(true);
+    n.querySelectorAll('.note, em').forEach(x => x.remove());
+    return n.textContent.replace(/\s+/g, ' ').trim();
+  };
+  const pill = $('#platePill'), panel = $('#platePanel'), list = $('#ppList');
+  $('#ppCall').href = telHref;
+
+  const render = () => {
+    let count = 0, total = 0;
+    list.innerHTML = '';
+    plate.forEach((it, name) => {
+      count += it.qty; total += it.qty * it.price;
+      const li = document.createElement('li');
+      li.innerHTML = `<span class="nm"></span><span class="qt"><button aria-label="Remove one">&minus;</button><b></b><button aria-label="Add one">+</button></span><span class="pr"></span>`;
+      li.querySelector('.nm').textContent = name;
+      li.querySelector('b').textContent = it.qty;
+      li.querySelector('.pr').textContent = money(it.qty * it.price);
+      const [minus, plus] = li.querySelectorAll('button');
+      minus.onclick = () => change(name, -1);
+      plus.onclick = () => change(name, 1, it.price, it.cat);
+      list.appendChild(li);
+    });
+    $('#pillCnt').textContent = count;
+    $('#pillTot').textContent = money(total);
+    $('#ppTot').textContent = money(total);
+    pill.classList.toggle('show', count > 0);
+    if (!count) setPanel(false);
+    return count;
+  };
+  const change = (name, d, price, cat) => {
+    const it = plate.get(name) || { qty: 0, price, cat };
+    it.qty += d;
+    if (it.qty <= 0) { plate.delete(name); if (!plate.size) toast('Plate khaali? Diet pe ho kya?'); }
+    else plate.set(name, it);
+    const count = render();
+    if (d > 0) {
+      pill.classList.remove('jiggle'); void pill.offsetWidth; pill.classList.add('jiggle');
+      toast(MILESTONES[count] || pick((QUIPS[cat] || []).concat(GENERIC)));
+    }
+  };
+  const setPanel = open => { panel.classList.toggle('open', open); document.body.classList.toggle('plate-open', open); pill.setAttribute('aria-expanded', open); };
+  pill.onclick = () => setPanel(!panel.classList.contains('open'));
+  $('#ppClose').onclick = () => setPanel(false);
+  $('#ppClear').onclick = () => { plate.clear(); render(); toast('Sab saaf! Naya shuru karo.'); };
+
+  $$('.menu .row').forEach(row => {
+    const price = parseFloat(row.querySelector('.p')?.textContent);
+    if (isNaN(price)) return;
+    const cat = row.closest('.cat')?.querySelector('h3')?.textContent.trim() || '';
+    const name = itemName(row);
+    row.classList.add('addable');
+    row.tabIndex = 0;
+    row.setAttribute('role', 'button');
+    row.setAttribute('aria-label', `Add ${name} to your plate`);
+    const add = () => { change(name, 1, price, cat); row.classList.remove('pop'); void row.offsetWidth; row.classList.add('pop'); };
+    row.addEventListener('click', add);
+    row.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); add(); } });
+  });
+  setTimeout(() => { if (!store.get('plateHint')) {
+    const io = new IntersectionObserver(es => { if (es[0].isIntersecting) { toast('Psst! Menu items pe tap karo, apni plate banao.'); store.set('plateHint','1'); io.disconnect(); } }, { threshold: .2 });
+    io.observe($('#menu'));
+  }}, 0);
+
+  /* ---- chai back-to-top ---- */
+  const chai = $('#chaiTop');
+  addEventListener('scroll', () => chai.classList.toggle('show', scrollY > innerHeight * 1.5), { passive: true });
+  chai.onclick = () => scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+
+  /* ---- "Ruko!" exit nudge (desktop, once per visit, only with an empty plate) ---- */
+  const ruko = $('#ruko');
+  const closeRuko = () => ruko.classList.remove('open');
+  document.addEventListener('mouseout', e => {
+    if (e.relatedTarget || e.clientY > 0 || store.get('ruko') || plate.size || innerWidth < 821) return;
+    store.set('ruko', '1'); ruko.classList.add('open'); $('#rukoYes').focus();
+  });
+  $('#rukoYes').onclick = () => { closeRuko(); setTimeout(() => toast('Yeh hui na baat!'), 400); };
+  $('#rukoNo').onclick = () => { closeRuko(); toast('Theek hai... par agli baar khana pakka!'); };
+  ruko.addEventListener('click', e => { if (e.target === ruko) closeRuko(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeRuko(); setPanel(false); } });
+
+  /* ---- wordmark easter egg ---- */
+  const HERO = ['Haan haan, naam yaad ho gaya!', 'Itna pyaar? Ab order bhi kar do.', 'Bas karo, sharma rahe hain hum.'];
+  let taps = 0, hi = 0;
+  const wm = $('.wordmark');
+  if (wm) wm.addEventListener('click', () => {
+    wm.classList.remove('bump'); void wm.offsetWidth; wm.classList.add('bump');
+    if (++taps % 3 === 0) toast(HERO[hi++ % HERO.length]);
+  });
+
+  /* ---- scroll reveal ---- */
+  if (!reduce && 'IntersectionObserver' in window) {
+    const els = $$('.menu .cat, .find .card, .follow h2, .follow .socials');
+    els.forEach(el => el.classList.add('reveal'));
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12 });
+    els.forEach(el => io.observe(el));
+  }
+})();
+</script>
+</body>
+</html>
