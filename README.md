@@ -14,3 +14,11 @@ Then open http://localhost:8000.
 
 ## Hosting
 Served by GitHub Pages from this branch's root (Settings → Pages → Deploy from a branch).
+
+## Fonts
+Matched to yehcheez.ca:
+- **venenosa** (woodcutter.es), self-hosted at `fonts/venenosa.woff2`, for headings, nav, buttons and the address.
+  The font draws a few punctuation marks blank (`? : - + /` and similar), so those characters are left out of the
+  web font and fall back to Bebas Neue (Google Fonts, loaded for just those characters).
+- **Dela Gothic One** (Google Fonts): the "(DO EAT BEFORE LEAVING)" line.
+- **Inter** (Google Fonts, 400–800): body text, menu items and prices.
