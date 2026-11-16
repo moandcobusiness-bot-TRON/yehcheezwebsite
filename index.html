@@ -98,13 +98,17 @@ body.noscroll{overflow:hidden}
 @media (max-width:820px){
   .ov-top{padding:14px 18px}
   .ov-order{flex-direction:column;gap:22px;transform:none}
+  .ov-order .tiles{gap:34px}
+  .ov-order .sq{width:clamp(52px,14vw,64px)}
+  .ov-order .sq.pickup{font-size:clamp(1.2rem,5.4vw,1.6rem)}
+  .ov-order .sq.uber{font-size:clamp(.95rem,4.2vw,1.2rem)}
+  .ov-order .lbl{font-size:clamp(1.25rem,5.6vw,1.6rem)}
 }
 
 /* ================= HERO ================= */
 .hero{display:grid;grid-template-columns:1fr 6px 1fr;align-items:center;gap:6%;padding:clamp(60px,9vw,140px) 6%}
-.wordmark{font-family:var(--cond);color:var(--orange);text-align:center;line-height:.82;transform:rotate(-7deg)}
-.wordmark .l1{display:block;font-size:clamp(5.5rem,13vw,13.5rem)}
-.wordmark .l2{display:block;font-size:clamp(6.5rem,15.5vw,16rem)}
+.wordmark{font-family:var(--cond);color:var(--orange);text-align:center;line-height:.9;letter-spacing:.02em;font-weight:400;transform:rotate(-7deg)}
+.wordmark .l1,.wordmark .l2{display:block;font-size:clamp(6rem,14vw,15rem)}
 .vbar{width:6px;height:clamp(160px,17vw,280px);background:var(--white);border-radius:6px;justify-self:center}
 .tag{text-align:center}
 .tag .t1{font-family:var(--cond);color:var(--orange);font-size:clamp(2.4rem,4.4vw,4.8rem);line-height:1.1}
@@ -155,7 +159,13 @@ body.noscroll{overflow:hidden}
 .story2-cell{position:relative;background:#000;line-height:0}
 .story2-cell:first-child{background:#f58714}
 .story2-cell img{display:block;width:100%;height:auto}
-.story2-order{position:absolute;left:32%;top:93.8%;width:25.5%;height:4.4%}
+/* Our Story text (fonts and spacing as on yehcheez.ca: venenosa heading, Inter Bold body).
+   Sized in vw so it keeps the same proportions next to the paratha artwork at every width. */
+.story-text2{line-height:normal;color:#0f0f0f;padding:2.2vw 1.6vw 2vw;display:flex;flex-direction:column}
+.story-text2 h2{font-family:var(--cond);font-weight:400;font-size:6.4vw;letter-spacing:-.025em;line-height:1.2;text-align:center;margin-bottom:.9vw}
+.story-text2 p{font-family:var(--body);font-weight:700;font-size:2vw;letter-spacing:-.064em;line-height:1.02;margin-bottom:1em}
+.story-text2 p:last-child{margin-bottom:0}
+.story-text2 .story2-order{color:inherit;text-decoration:underline}
 @media (max-width:820px){
   /* stays side by side on phones, like the mock-up */
   .story2{border-top:var(--rule) solid var(--white)}
@@ -193,6 +203,7 @@ body.noscroll{overflow:hidden}
 .card{max-width:680px;margin:0 auto}
 .card iframe{display:block;width:100%;height:clamp(240px,40vw,350px);border:0;background:#f4f4f4}
 .card .body{background:var(--orange);color:var(--ink);padding:24px 18px 46px}
+.card h2 .t-phone{display:none}
 .card h2{font-family:var(--cond);font-size:clamp(2.6rem,6vw,3.6rem);line-height:1;font-weight:400}
 .card .addr{font-family:var(--cond);font-size:clamp(1.4rem,3vw,1.9rem);margin:18px 0 26px;line-height:1.1}
 .actions{display:flex;align-items:center;gap:26px;flex-wrap:wrap}
@@ -248,8 +259,7 @@ body.noscroll{overflow:hidden}
 
   /* hero stays two columns: wordmark | bar | tagline */
   .hero{grid-template-columns:1fr 4px 1.15fr;gap:4%;padding:13vw 4% 11vw}
-  .wordmark .l1{font-size:12.5vw}
-  .wordmark .l2{font-size:14vw}
+  .wordmark .l1,.wordmark .l2{font-size:14vw}
   .vbar{width:4px;height:26vw;border-radius:4px}
   .tag .t1{font-size:4.6vw}
   .tag .t2{font-size:6.2vw}
@@ -270,7 +280,9 @@ body.noscroll{overflow:hidden}
   .card{max-width:none}
   .card iframe,.offline-map{height:76vw}
   .card .body{padding:9vw 1vw 0}
-  .card h2{font-size:11.5vw;text-align:center}
+  .card h2{font-size:19vw;text-align:center;letter-spacing:-.02em;line-height:1}
+  .card h2 .t-wide{display:none}
+  .card h2 .t-phone{display:inline}
   .card .addr{font-size:7.6vw;line-height:1.3;margin:8vw 0}
 
   .socials svg{width:56px;height:56px}
@@ -381,7 +393,7 @@ body.plate-open .chai-top{opacity:0;pointer-events:none}
       <div class="tiles">
         <a class="tile" data-order="pickup" target="_blank" rel="noopener">
           <span class="sq pickup">IN<br>STORE</span>
-          <span class="lbl distress">PICKUP</span>
+          <span class="lbl distress">PICK-UP</span>
         </a>
         <a class="tile" data-order="delivery" target="_blank" rel="noopener">
           <span class="sq uber"><span class="u">Uber</span><span class="e">Eats</span></span>
@@ -442,9 +454,13 @@ body.plate-open .chai-top{opacity:0;pointer-events:none}
 
   <!-- OUR STORY -->
   <section class="story2" id="story">
-    <div class="story2-cell">
-      <img src="images/our-story.png" width="576" height="956" alt="Our Story">
-      <a class="story2-order" href="#find" aria-label="Order now"></a>
+    <div class="story2-cell story-text2">
+      <h2>OUR STORY</h2>
+      <p>Having grown up in Karachi, we grew up eating a lot of Paratha Rolls (Casually aka Rolls). A few years into our migration to this beautiful country we now call home, Canada, we developed this non-ending craving for Rolls like back home.</p>
+      <p>Back in 2015 we were on a mission to find a roll that would take us back to where it all started. Thrown with roll versions (made in Naan) that made our heart feel wrenched to remotely acceptable versions made in frozen Parathas, we just couldn't find what we were looking for. That Freshly made hot paratha rolled with authentic chutney and succulent Barbecued meat with just a garnish of Onions still remained a distant dream.</p>
+      <p>The Bro-Sis duo of Annie and Harris, We took it upon ourselves to develop a recipee that could bring one's tastebuds the experience closest to the Streets of Khadda Market, Bahadurabad and Tariq Road in Karachi.</p>
+      <p>Fast Forward to May 2018, Yeh Cheez! was born. Yeh Cheez! a true at heart Pakistani expression of pure joy. With a menu built around our childhood favorites like Chicken Club Sanwiches, Bun Kabab, Masala Fries and our star of the show, Rolls obviously, the Yeh Cheez! experience is highly likely to leave you craving for more.</p>
+      <p>If you haven't tried it yet, then you need to stop reading and just <a class="story2-order" href="#top">ORDER NOW</a></p>
     </div>
     <div class="story2-cell">
       <img src="images/no-naan-sense.png" width="615" height="956" alt="Authentic rolls are only made in parathas. No naan sense!">
@@ -547,7 +563,7 @@ body.plate-open .chai-top{opacity:0;pointer-events:none}
         <a class="map-open" id="mapOpen" target="_blank" rel="noopener" aria-label="Open in Google Maps">OPEN IN MAPS &#8599;</a>
       </div>
       <div class="body">
-        <h2 class="distress" data-bind="locationTitle"></h2>
+        <h2 class="distress"><span class="t-wide" data-bind="locationTitle"></span><span class="t-phone">FIND US!</span></h2>
         <p class="addr distress" data-bind="address"></p>
         <div class="actions">
           <a class="btn dark" id="directions" target="_blank" rel="noopener">DIRECTIONS</a>
