@@ -26,7 +26,7 @@ html{scroll-behavior:smooth;scroll-padding-top:90px}
 body{background:#1a1a1a;color:var(--white);font-family:var(--body)}
 img{display:block;max-width:100%;height:auto}
 a{color:inherit}
-.site{max-width:1700px;margin:0 auto;background:var(--black);overflow-x:clip}
+.site{width:100%;background:var(--black);overflow-x:clip}
 .distress{filter:url(#distress)}
 .hr{height:var(--rule);background:var(--white)}
 
@@ -41,6 +41,23 @@ a{color:inherit}
 .links{display:flex;flex:1;justify-content:space-evenly;list-style:none}
 .links a{font-family:var(--cond);font-size:clamp(2rem,3.4vw,3.6rem);color:var(--orange);text-decoration:none;letter-spacing:.01em}
 .links a:hover{color:var(--white)}
+.links button{font-family:var(--cond);font-size:clamp(2rem,3.4vw,3.6rem);color:var(--orange);letter-spacing:.01em;background:none;border:0;cursor:pointer;padding:0;line-height:inherit}
+.links button:hover,.links button[aria-expanded="true"]{color:var(--white)}
+
+/* ===== ORDER NOW dropdown (desktop nav) ===== */
+.has-drop{position:relative}
+.order-drop{position:absolute;top:calc(100% + 6px);left:50%;z-index:55;background:var(--black);padding:12px 22px 14px;border-radius:0 0 14px 14px;box-shadow:0 14px 28px rgba(0,0,0,.55);
+  opacity:0;visibility:hidden;transform:translate(-50%,-6px);transition:opacity .18s ease,transform .18s ease,visibility .18s}
+.order-drop.open{opacity:1;visibility:visible;transform:translate(-50%,0)}
+.tiles.mini{gap:28px}
+.tiles.mini .tile{gap:8px}
+.tiles.mini .sq{width:52px;border-radius:22%}
+.tiles.mini .sq.pickup{font-size:1.25rem}
+.tiles.mini .lbl{font-size:1.7rem}
+.sq.uber{background:#000;border:1px solid #2a2a2a;font-family:system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;font-weight:600;line-height:1;gap:1px;font-size:clamp(1.05rem,1.6vw,1.6rem);letter-spacing:-.01em}
+.sq.uber .u{color:#fff}
+.sq.uber .e{color:#06c167}
+.tiles.mini .sq.uber{font-size:.95rem}
 .burger{background:none;border:0;cursor:pointer;width:64px;height:40px;display:flex;flex-direction:column;justify-content:center;gap:12px;padding:4px 2px}
 .burger span{display:block;height:3px;background:var(--orange);border-radius:2px}
 
@@ -235,6 +252,8 @@ body.noscroll{overflow:hidden}
 .toast-wrap{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);z-index:70;display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none;width:min(92vw,460px)}
 .toast{background:var(--white);color:var(--ink);font-weight:800;font-size:.95rem;padding:12px 18px;border-radius:12px;border-left:6px solid var(--orange);box-shadow:0 8px 24px rgba(0,0,0,.45);animation:tin .25s ease;text-align:center}
 .toast.out{animation:tout .25s ease forwards}
+.toast .en{display:block;font-weight:600;font-style:italic;font-size:.82rem;color:#555;margin-top:4px}
+.ruko-card .call-num{font-family:var(--cond);font-size:clamp(2rem,6vw,2.6rem);font-weight:400;margin:10px 0 18px;letter-spacing:.02em}
 @keyframes tin{from{opacity:0;transform:translateY(12px)}}
 @keyframes tout{to{opacity:0;transform:translateY(12px)}}
 
@@ -321,14 +340,12 @@ body.plate-open .chai-top{opacity:0;pointer-events:none}
     <li class="ov-order">
       <span class="ov-big distress">ORDER NOW :</span>
       <div class="tiles">
-        <a class="tile" id="pickup" data-close>
+        <a class="tile" data-order="pickup" target="_blank" rel="noopener">
           <span class="sq pickup">IN<br>STORE</span>
           <span class="lbl distress">PICKUP</span>
         </a>
-        <a class="tile" id="delivery" target="_blank" rel="noopener">
-          <span class="sq delivery" id="delivery-sq">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1.2 11.2a1 1 0 0 1-1 .8H7.2a1 1 0 0 1-1-.8z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg>
-          </span>
+        <a class="tile" data-order="delivery" target="_blank" rel="noopener">
+          <span class="sq uber"><span class="u">Uber</span><span class="e">Eats</span></span>
           <span class="lbl distress">DELIVERY</span>
         </a>
       </div>
@@ -350,7 +367,21 @@ body.plate-open .chai-top{opacity:0;pointer-events:none}
       </a>
       <ul class="links">
         <li><a href="#menu">MENU</a></li>
-        <li><a href="#find">ORDER NOW</a></li>
+        <li class="has-drop">
+          <button type="button" id="orderToggle" aria-expanded="false" aria-controls="orderDrop">ORDER NOW</button>
+          <div class="order-drop" id="orderDrop">
+            <div class="tiles mini">
+              <a class="tile" data-order="pickup" target="_blank" rel="noopener">
+                <span class="sq pickup">IN<br>STORE</span>
+                <span class="lbl distress">PICKUP</span>
+              </a>
+              <a class="tile" data-order="delivery" target="_blank" rel="noopener">
+                <span class="sq uber"><span class="u">Uber</span><span class="e">Eats</span></span>
+                <span class="lbl distress">DELIVERY</span>
+              </a>
+            </div>
+          </div>
+        </li>
         <li><a href="#find">FIND US</a></li>
       </ul>
       <button class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="overlay" id="burger"><span></span><span></span></button>
@@ -483,7 +514,7 @@ body.plate-open .chai-top{opacity:0;pointer-events:none}
         <p class="addr distress" data-bind="address"></p>
         <div class="actions">
           <a class="btn dark" id="directions" target="_blank" rel="noopener">DIRECTIONS</a>
-          <a class="btn light" id="order">ORDER NOW</a>
+          <a class="btn light" id="order" href="#top">ORDER NOW</a>
           <a class="phone" id="phone" aria-label="Call us">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>
           </a>
@@ -541,13 +572,11 @@ const SITE = {
   mapQuery: "Yeh Cheez, 81 James Snow Pkwy N #4, Milton, ON L9E 0H3",
   lat: null,                         // restaurant latitude  (placeholder: Milton centre). In Google Maps, right-click your pin to copy exact numbers
   lng: null,                        // restaurant longitude (placeholder)
-  phone: "000-000-0000",
-  orderUrl: "",                       // card's ORDER NOW: your ordering link, or "" to call
-  pickupUrl: "#find",                 // IN STORE / PICKUP tile: "#find" scrolls to the map card, or paste an online-ordering link
-  deliveryUrl: "#",                   // DELIVERY tile: paste your delivery-app store link
-  deliveryLogo: "",                   // optional: e.g. "images/delivery-badge.png" (the official badge from your delivery partner)
-  facebook: "#",
-  instagram: "#"
+  phone: "+1 (905) 875-4320",
+  pickupUrl: "https://yeh-cheez-milton.cloveronline.com/menu/all",   // IN STORE / PICKUP tile
+  deliveryUrl: "https://www.ubereats.com/ca/store/yeh-cheez!-pakistani-street-food/LIXk-N3SQGy_s7Eb4UM0gA?diningMode=DELIVERY&pl=JTdCJTIyYWRkcmVzcyUyMiUzQSUyMjExNTAlMjBDaGFybHRvbiUyMFdheSUyMiUyQyUyMnJlZmVyZW5jZSUyMiUzQSUyMkNoSUoyU09tU2ZsdUs0Z1JiWEQ4WlBlcjVqQSUyMiUyQyUyMnJlZmVyZW5jZVR5cGUlMjIlM0ElMjJnb29nbGVfcGxhY2VzJTIyJTJDJTIybGF0aXR1ZGUlMjIlM0E0My41MzczMDE1JTJDJTIybG9uZ2l0dWRlJTIyJTNBLTc5Ljg3MDE0NzglN0Q%3D", // DELIVERY tile (Uber Eats)
+  facebook: "https://www.facebook.com/yehcheezmilton/?_rdr",
+  instagram: "https://www.instagram.com/yehcheezmilton/?hl=en"
 };
 /* ===================== no need to edit below ===================== */
 
@@ -566,18 +595,19 @@ const q = encodeURIComponent(SITE.mapQuery);
 $('#directions').href = `https://www.google.com/maps/dir/?api=1&destination=${q}`;
 const tel = "tel:" + SITE.phone.replace(/[^\d+]/g, "");
 $('#phone').href = tel;
-const order = $('#order');
-if (SITE.orderUrl) { order.href = SITE.orderUrl; order.target = "_blank"; order.rel = "noopener"; }
-else order.href = tel;
 $('#fb').href = SITE.facebook;
 $('#ig').href = SITE.instagram;
 
-// order tiles
-const pickup = $('#pickup');
-pickup.href = SITE.pickupUrl || "#find";
-if (!pickup.getAttribute('href').startsWith('#')) { pickup.target = "_blank"; pickup.rel = "noopener"; }
-$('#delivery').href = SITE.deliveryUrl || "#";
-if (SITE.deliveryLogo) $('#delivery-sq').innerHTML = `<img src="${esc(SITE.deliveryLogo)}" alt="Delivery">`;
+// order tiles (nav dropdown + full-screen menu)
+document.querySelectorAll('[data-order]').forEach(a => {
+  a.href = a.dataset.order === 'pickup' ? SITE.pickupUrl : SITE.deliveryUrl;
+});
+
+// keep anchor jumps (MENU, FIND US) clear of the sticky nav, whatever its height
+const navEl = $('.nav');
+const setScrollPad = () => document.documentElement.style.scrollPaddingTop = (navEl.offsetHeight + 8) + 'px';
+setScrollPad(); addEventListener('resize', setScrollPad);
+document.fonts && document.fonts.ready.then(setScrollPad);
 
 // full-screen hamburger menu
 const burger = $('#burger'), overlay = $('#overlay');
@@ -591,6 +621,35 @@ burger.addEventListener('click', () => setMenu(true));
 $('#ov-close').addEventListener('click', () => setMenu(false));
 overlay.querySelectorAll('[data-close]').forEach(a => a.addEventListener('click', () => setMenu(false)));
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.classList.contains('open')) setMenu(false); });
+
+// ORDER NOW dropdown in the top nav
+const orderToggle = $('#orderToggle'), orderDrop = $('#orderDrop');
+const setOrder = open => {
+  orderDrop.classList.toggle('open', open);
+  orderToggle.setAttribute('aria-expanded', open);
+};
+orderToggle.addEventListener('click', () => setOrder(!orderDrop.classList.contains('open')));
+orderDrop.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOrder(false)));
+document.addEventListener('click', e => {
+  if (!e.target.closest('.has-drop') && !e.target.closest('[data-open-order]')) setOrder(false);
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') setOrder(false); });
+
+// any other ORDER NOW button opens that same dropdown (or the full-screen menu on phones,
+// where the nav links are hidden behind the hamburger)
+const openOrder = () => {
+  if (getComputedStyle($('.links')).display === 'none') {
+    setMenu(true);
+    $('.ov-order').scrollIntoView({ block: 'center' });
+  } else {
+    setOrder(true);
+    orderDrop.querySelector('a').focus({ preventScroll: true });
+  }
+};
+document.querySelectorAll('#order, .story2-order').forEach(a => {
+  a.setAttribute('data-open-order', '');
+  a.addEventListener('click', e => { e.preventDefault(); openOrder(); });
+});
 </script>
 
 <script>
@@ -613,20 +672,25 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.cl
   const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
   const isAndroid = /Android/i.test(navigator.userAgent);
   const placeUrl = () => origin ? dirUrl() : `https://www.google.com/maps/search/?api=1&query=${enc(dest)}`;
+  // Desktop: Google Maps opens in a new tab.
+  // Android: an intent link hands off to the Google Maps app (browser fallback if it isn't installed).
+  // iOS: Google's universal link opens the Google Maps app when installed, otherwise Safari.
+  const androidLink = (q, web) => `intent:${q}#Intent;package=com.google.android.apps.maps;S.browser_fallback_url=${enc(web)};end`;
   const setJumpLinks = () => {
     const web = placeUrl();
     ['#gmapsOpen', '#mapOpen'].forEach(sel => {
       const a = $(sel); a.href = web;
       if (isAndroid) {
-        // Android: open the Google Maps app directly; falls back to the browser if it isn't installed
-        const q = origin ? `google.navigation:q=${enc(dest)}` : `geo:0,0?q=${enc(dest)}`;
-        a.href = `intent:${q}#Intent;package=com.google.android.apps.maps;S.browser_fallback_url=${enc(web)};end`;
+        a.href = androidLink(origin ? `google.navigation:q=${enc(dest)}` : `geo:0,0?q=${enc(dest)}`, web);
         a.removeAttribute('target');
       }
-      // iOS and desktop: Google's universal link opens the app when installed, otherwise the browser
     });
+    // DIRECTIONS always means a route to us
+    const d = $('#directions'), dweb = dirUrl();
+    d.href = isAndroid ? androidLink(`google.navigation:q=${enc(dest)}`, dweb) : dweb;
+    if (isAndroid) d.removeAttribute('target'); else d.target = '_blank';
   };
-  const loadLive = () => { const u = embedUrl(); if (frame.src !== u) frame.src = u; $('#directions').href = dirUrl(); };
+  const loadLive = () => { const u = embedUrl(); if (frame.src !== u) frame.src = u; setJumpLinks(); };
 
   /* --- maths --- */
   const rad = d => d * Math.PI / 180;
@@ -751,6 +815,16 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.cl
   </svg>
   <span>UPAR CHALO</span>
 </button>
+<div class="ruko" id="callPop" role="dialog" aria-modal="true" aria-labelledby="callH">
+  <div class="ruko-card">
+    <h3 id="callH">CALL YEH CHEEZ!</h3>
+    <p class="call-num" id="callNum"></p>
+    <div class="btns">
+      <a class="yes" id="callYes" href="#">CALL NOW</a>
+      <button class="no" id="callNo">Not right now</button>
+    </div>
+  </div>
+</div>
 <div class="ruko" id="ruko" role="dialog" aria-modal="true" aria-labelledby="rukoH">
   <div class="ruko-card">
     <h3 id="rukoH">ARRE RUKO!</h3>
@@ -774,25 +848,57 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.cl
 
   /* ---- toasts ---- */
   const toasts = $('#toasts');
+  // toast(['Urdu line', 'English translation']) or toast('one line')
+  const TOAST_MS = 5200;
   const toast = msg => {
-    const t = document.createElement('div'); t.className = 'toast'; t.textContent = msg;
+    const [main, en] = Array.isArray(msg) ? msg : [msg];
+    const t = document.createElement('div'); t.className = 'toast';
+    t.textContent = main;
+    if (en && en !== main) { const s = document.createElement('span'); s.className = 'en'; s.textContent = en; t.appendChild(s); }
     toasts.appendChild(t);
     while (toasts.children.length > 2) toasts.firstChild.remove();
-    setTimeout(() => { t.classList.add('out'); setTimeout(() => t.remove(), 260); }, 2600);
+    setTimeout(() => { t.classList.add('out'); setTimeout(() => t.remove(), 260); }, TOAST_MS);
   };
 
-  /* ---- quips ---- */
+  /* ---- quips: [Urdu, English] ---- */
   const QUIPS = {
-    'PARATHA ROLLS': ['Roll in! Paratha fresh hai, naan wala scene nahi.', 'Asli roll, asli paratha. No naan-sense.', 'Karachi wali feeling aa gayi na?'],
-    'SANDWICHES':    ['Club sandwich: double decker, double khushi.', 'Kaisa diya? Bohot acha diya.', 'Sandwich bhi, fries bhi. Full paisa vasool.'],
-    'FRIES':         ['Masala thora extra? Hum mana nahi karenge.', 'Fries ke bina order? Toba toba.', 'Chipotle garlic... aap toh expert nikle!'],
-    'SHAREABLES':    ["Shareable likha hai... par hum kisi ko nahi batayenge.", 'Chaat ka mood? Dil khush kar diya.', 'Share karna hai toh karo, warna koi baat nahi.'],
-    'BEVERAGES':     ['Chai ke bina order adhoora hai.', 'Pakola! Aap pakke Karachi wale ho.', 'Thanda ya garam, dono chalega.'],
-    'DESSERTS':      ['Meetha toh banta hai.', 'Kulfi: diet kal se. Pakka.', 'Falooda le liya? Shabaash beta.'],
-    'SIDES':         ['Extra chutney? Smart move.', 'Ek aur paratha... kyun nahi?', 'Side dish, main character energy.']
+    'PARATHA ROLLS': [
+      ['Roll in! Paratha fresh hai, naan wala scene nahi.', 'Roll in! The paratha is fresh, no naan business here.'],
+      ['Asli roll, asli paratha. No naan-sense.', 'Real roll, real paratha. No naan-sense.'],
+      ['Karachi wali feeling aa gayi na?', 'Getting that Karachi feeling, right?']],
+    'SANDWICHES': [
+      ['Club sandwich: double decker, double khushi.', 'Club sandwich: double decker, double the happiness.'],
+      ['Kaisa diya? Bohot acha diya.', 'How did we serve it? Really, really well.'],
+      ['Sandwich bhi, fries bhi. Full paisa vasool.', 'A sandwich and fries too. Totally worth the money.']],
+    'FRIES': [
+      ['Masala thora extra? Hum mana nahi karenge.', "A little extra masala? We won't say no."],
+      ['Fries ke bina order? Toba toba.', 'An order without fries? Heaven forbid.'],
+      ['Chipotle garlic... aap toh expert nikle!', 'Chipotle garlic... you turned out to be an expert!']],
+    'SHAREABLES': [
+      ['Shareable likha hai... par hum kisi ko nahi batayenge.', "It says shareable... but we won't tell anyone."],
+      ['Chaat ka mood? Dil khush kar diya.', 'In a chaat mood? You made our day.'],
+      ['Share karna hai toh karo, warna koi baat nahi.', 'Share if you want to, otherwise no worries.']],
+    'BEVERAGES': [
+      ['Chai ke bina order adhoora hai.', 'An order without chai is incomplete.'],
+      ['Pakola! Aap pakke Karachi wale ho.', "Pakola! You're a true Karachiite."],
+      ['Thanda ya garam, dono chalega.', 'Cold or hot, both work for us.']],
+    'DESSERTS': [
+      ['Meetha toh banta hai.', 'Something sweet is a must.'],
+      ['Kulfi: diet kal se. Pakka.', 'Kulfi: the diet starts tomorrow. Promise.'],
+      ['Falooda le liya? Shabaash beta.', 'Got the falooda? Well done, kiddo.']],
+    'SIDES': [
+      ['Extra chutney? Smart move.', 'Extra chutney? Smart move.'],
+      ['Ek aur paratha... kyun nahi?', 'One more paratha... why not?'],
+      ['Side dish, main character energy.', 'A side dish with main character energy.']]
   };
-  const GENERIC = ['Wah! Ammi proud hongi.', 'Plate bhar rahi hai, dil bhi.', 'Bohot khoob!'];
-  const MILESTONES = { 5: 'Itna khana? Shaadi ka order lag raha hai!', 10: 'Poora khandaan aa raha hai kya?', 15: 'Bhai, catering chahiye toh call kar lo!' };
+  const GENERIC = [
+    ['Wah! Ammi proud hongi.', 'Wow! Mom would be proud.'],
+    ['Plate bhar rahi hai, dil bhi.', 'The plate is filling up, and so is the heart.'],
+    ['Bohot khoob!', 'Excellent choice!']];
+  const MILESTONES = {
+    5:  ['Itna khana? Shaadi ka order lag raha hai!', 'This much food? Looks like a wedding order!'],
+    10: ['Poora khandaan aa raha hai kya?', 'Is the whole family coming?'],
+    15: ['Bhai, catering chahiye toh call kar lo!', 'Bro, if you need catering, just give us a call!'] };
 
   /* ---- plate ---- */
   const plate = new Map();
@@ -830,7 +936,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.cl
   const change = (name, d, price, cat) => {
     const it = plate.get(name) || { qty: 0, price, cat };
     it.qty += d;
-    if (it.qty <= 0) { plate.delete(name); if (!plate.size) toast('Plate khaali? Diet pe ho kya?'); }
+    if (it.qty <= 0) { plate.delete(name); if (!plate.size) toast(['Plate khaali? Diet pe ho kya?', 'Empty plate? Are you on a diet?']); }
     else plate.set(name, it);
     const count = render();
     if (d > 0) {
@@ -841,7 +947,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.cl
   const setPanel = open => { panel.classList.toggle('open', open); document.body.classList.toggle('plate-open', open); pill.setAttribute('aria-expanded', open); };
   pill.onclick = () => setPanel(!panel.classList.contains('open'));
   $('#ppClose').onclick = () => setPanel(false);
-  $('#ppClear').onclick = () => { plate.clear(); render(); toast('Sab saaf! Naya shuru karo.'); };
+  $('#ppClear').onclick = () => { plate.clear(); render(); toast(['Sab saaf! Naya shuru karo.', 'All cleared! Start fresh.']); };
 
   $$('.menu .row').forEach(row => {
     const price = parseFloat(row.querySelector('.p')?.textContent);
@@ -857,7 +963,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.cl
     row.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); add(); } });
   });
   setTimeout(() => { if (!store.get('plateHint')) {
-    const io = new IntersectionObserver(es => { if (es[0].isIntersecting) { toast('Psst! Menu items pe tap karo, apni plate banao.'); store.set('plateHint','1'); io.disconnect(); } }, { threshold: .2 });
+    const io = new IntersectionObserver(es => { if (es[0].isIntersecting) { toast(['Psst! Menu items pe tap karo, apni plate banao.', 'Psst! Tap any menu item to build your plate.']); store.set('plateHint','1'); io.disconnect(); } }, { threshold: .2 });
     io.observe($('#menu'));
   }}, 0);
 
@@ -873,13 +979,23 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.cl
     if (e.relatedTarget || e.clientY > 0 || store.get('ruko') || plate.size || innerWidth < 821) return;
     store.set('ruko', '1'); ruko.classList.add('open'); $('#rukoYes').focus();
   });
-  $('#rukoYes').onclick = () => { closeRuko(); setTimeout(() => toast('Yeh hui na baat!'), 400); };
-  $('#rukoNo').onclick = () => { closeRuko(); toast('Theek hai... par agli baar khana pakka!'); };
+  $('#rukoYes').onclick = () => { closeRuko(); setTimeout(() => toast(['Yeh hui na baat!', "Now that's more like it!"]), 400); };
+  $('#rukoNo').onclick = () => { closeRuko(); toast(['Theek hai... par agli baar khana pakka!', "Okay... but next time you're eating, for sure!"]); };
   ruko.addEventListener('click', e => { if (e.target === ruko) closeRuko(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeRuko(); setPanel(false); } });
+  /* ---- phone icon: confirm before calling ---- */
+  const callPop = $('#callPop');
+  $('#callNum').textContent = phone;
+  $('#callYes').href = telHref;
+  const closeCall = () => callPop.classList.remove('open');
+  $('#phone').addEventListener('click', e => { e.preventDefault(); callPop.classList.add('open'); $('#callYes').focus(); });
+  $('#callYes').addEventListener('click', () => setTimeout(closeCall, 300));
+  $('#callNo').onclick = closeCall;
+  callPop.addEventListener('click', e => { if (e.target === callPop) closeCall(); });
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeRuko(); closeCall(); setPanel(false); } });
 
   /* ---- wordmark easter egg ---- */
-  const HERO = ['Haan haan, naam yaad ho gaya!', 'Itna pyaar? Ab order bhi kar do.', 'Bas karo, sharma rahe hain hum.'];
+  const HERO = [['Haan haan, naam yaad ho gaya!', "Yes yes, you've memorized our name!"], ['Itna pyaar? Ab order bhi kar do.', 'So much love? Now place an order too.'], ['Bas karo, sharma rahe hain hum.', "Stop it, you're making us blush."]];
   let taps = 0, hi = 0;
   const wm = $('.wordmark');
   if (wm) wm.addEventListener('click', () => {
