@@ -1,7 +1,7 @@
 /* Offline cache for Yeh Cheez! — registered from index.html.
    Bump VERSION whenever you change the site so visitors get the new files. */
-const VERSION = 'yc-v5';
-const CORE = ['./', 'index.html', 'images/our-story.png', 'images/no-naan-sense.png', 'images/oye-hoye-box.jpg'];
+const VERSION = 'yc-v6';
+const CORE = ['./', 'index.html', 'images/our-story.png', 'images/no-naan-sense.png', 'images/oye-hoye-box.jpg', 'images/logo.png'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(VERSION).then(c => c.addAll(CORE)).then(() => self.skipWaiting()));

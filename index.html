@@ -6,6 +6,8 @@
 <title>YEH CHEEZ! | Pakistani Eatery, Milton</title>
 <meta name="description" content="Yeh Cheez! Pakistani eatery in Milton, ON. Paratha rolls, sandwiches, masala fries, chaat and karak chai.">
 <meta name="theme-color" content="#0e0e0e">
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Anton&family=Syne:wght@800&family=Inter+Tight:wght@600;700;800&family=Montserrat:wght@500;900&display=swap" rel="stylesheet">
@@ -38,6 +40,7 @@ a{color:inherit}
 .logo .icon svg{width:18px;height:18px}
 .logo .word{font-family:var(--cond);font-size:1.7rem;color:var(--orange);letter-spacing:.02em}
 .logo .sub{font-family:var(--body);font-weight:800;font-size:.6rem;color:var(--white);letter-spacing:.04em;margin-top:2px}
+.logo img{width:clamp(110px,9.5vw,160px);height:auto}
 .links{display:flex;flex:1;justify-content:space-evenly;list-style:none}
 .links a{font-family:var(--cond);font-size:clamp(2rem,3.4vw,3.6rem);color:var(--orange);text-decoration:none;letter-spacing:.01em}
 .links a:hover{color:var(--white)}
@@ -233,6 +236,8 @@ body.noscroll{overflow:hidden}
   .links > li:not(.has-drop){display:none}
   .links button{font-size:clamp(1.7rem,8.2vw,2.8rem)}
   .burger{width:clamp(40px,11vw,56px);gap:8px}
+  .logo img{width:clamp(84px,24vw,130px)}
+  .ov-top .logo img{width:clamp(100px,30vw,150px)}
 
   /* hero stays two columns: wordmark | bar | tagline */
   .hero{grid-template-columns:1fr 4px 1.15fr;gap:4%;padding:13vw 4% 11vw}
@@ -357,9 +362,7 @@ body.plate-open .chai-top{opacity:0;pointer-events:none}
 <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="Site menu">
   <div class="ov-top">
     <a href="#top" class="logo" data-close aria-label="Home">
-      <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M3 12h7"/><path d="M12 8h7M12 11h7M12 14h7M12 17h5"/></svg></span>
-      <span class="word" data-bind="name"></span>
-      <span class="sub" data-bind="subline"></span>
+      <img src="images/logo.png" width="400" height="272" alt="Yeh Cheez! Pakistani Eatery">
     </a>
     <button class="ov-close" id="ov-close" aria-label="Close menu"></button>
   </div>
@@ -390,9 +393,7 @@ body.plate-open .chai-top{opacity:0;pointer-events:none}
   <nav class="nav">
     <div class="nav-inner">
       <a href="#top" class="logo" aria-label="Home">
-        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M3 12h7"/><path d="M12 8h7M12 11h7M12 14h7M12 17h5"/></svg></span>
-        <span class="word" data-bind="name"></span>
-        <span class="sub" data-bind="subline"></span>
+        <img src="images/logo.png" width="400" height="272" alt="Yeh Cheez! Pakistani Eatery">
       </a>
       <ul class="links">
         <li><a href="#menu">MENU</a></li>
