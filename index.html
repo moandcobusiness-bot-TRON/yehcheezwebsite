@@ -569,8 +569,8 @@ const SITE = {
   parathaImage: "",                   // e.g. "images/paratha-half.png" (left half of the round paratha)
   boxImage: BOX_IMG,                  // Oye Hoye box image (embedded below)
   locationTitle: "YEH CHEEZ!  MILTON",
-  address: "81 James Snow Pkwy N #4, Milton, ON L9E 0H3",
-  mapQuery: "Yeh Cheez, 81 James Snow Pkwy N #4, Milton, ON L9E 0H3",
+  address: "81 James Snow Pkwy N #4, Milton, ON L9T 0R3",
+  mapQuery: "Yeh Cheez, 81 James Snow Pkwy N #4, Milton, ON L9T 0R3",
   lat: null,                         // restaurant latitude  (placeholder: Milton centre). In Google Maps, right-click your pin to copy exact numbers
   lng: null,                        // restaurant longitude (placeholder)
   phone: "+1 (905) 875-4320",
@@ -805,9 +805,9 @@ document.querySelectorAll('#order, .story2-order').forEach(a => {
   <ul class="pp-list" id="ppList"></ul>
   <div class="pp-foot">
     <div class="pp-line"><span>Subtotal</span><span id="ppSub">$0.00</span></div>
-    <div class="pp-line"><span id="ppTaxLbl">HST (13%)</span><span id="ppTax">$0.00</span></div>
+    <div class="pp-line"><span>HST (13%)</span><span id="ppTax">$0.00</span></div>
     <div class="pp-total"><span>TOTAL</span><span id="ppTot">$0.00</span></div>
-    <p class="pp-note" id="ppNote">Includes Ontario HST. Read it out when you call &mdash; we'll handle the rest.</p>
+    <p class="pp-note">Includes 13% Ontario HST. Read it out when you call &mdash; we'll handle the rest.</p>
     <div class="pp-actions"><a class="pp-call" id="ppCall" href="#">CALL TO ORDER</a><button class="pp-clear" id="ppClear">CLEAR</button></div>
   </div>
 </div>
@@ -906,15 +906,11 @@ document.querySelectorAll('#order, .story2-order').forEach(a => {
   /* ---- plate ---- */
   const plate = new Map();
   const money = n => '$' + n.toFixed(2);
-  /* Ontario sales tax on restaurant food: 13% HST.
-     Ontario's point-of-sale rebate removes the 8% provincial part when the whole order of
-     prepared food & drinks is $4.00 or less, leaving only the 5% GST.
+  /* Ontario HST at 13% on every order, matching the Clover checkout
+     (Clover charges the full 13% even on orders under $4).
      Worked in cents so the maths never drifts. */
-  const HST = 0.13, GST = 0.05, SMALL_ORDER_CENTS = 400;
-  const taxFor = subCents => {
-    const small = subCents > 0 && subCents <= SMALL_ORDER_CENTS;
-    return { rate: small ? GST : HST, cents: Math.round(subCents * (small ? GST : HST)), small };
-  };
+  const HST = 0.13;
+  const taxCents = subCents => Math.round(subCents * HST);
   const itemName = row => {
     const n = row.querySelector('.n').cloneNode(true);
     n.querySelectorAll('.note, em').forEach(x => x.remove());
@@ -939,13 +935,9 @@ document.querySelectorAll('#order, .story2-order').forEach(a => {
       list.appendChild(li);
     });
     $('#pillCnt').textContent = count;
-    const tax = taxFor(subCents), totCents = subCents + tax.cents;
+    const tax = taxCents(subCents), totCents = subCents + tax;
     $('#ppSub').textContent = money(subCents / 100);
-    $('#ppTaxLbl').textContent = tax.small ? 'GST (5%)' : 'HST (13%)';
-    $('#ppTax').textContent = money(tax.cents / 100);
-    $('#ppNote').innerHTML = tax.small
-      ? 'Orders of $4.00 or less pay only 5% GST in Ontario. Read it out when you call &mdash; we\'ll handle the rest.'
-      : 'Includes 13% Ontario HST. Read it out when you call &mdash; we\'ll handle the rest.';
+    $('#ppTax').textContent = money(tax / 100);
     $('#pillTot').textContent = money(totCents / 100);
     $('#ppTot').textContent = money(totCents / 100);
     pill.classList.toggle('show', count > 0);
