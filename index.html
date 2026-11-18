@@ -1253,7 +1253,9 @@ document.querySelectorAll('#order, .story2-order').forEach(a => {
     const name = c.querySelector('h3').textContent.trim(); c.id = c.id || 'cat-' + i;
     const b = el('button'); b.type = 'button'; b.textContent = short[name] || name; b.dataset.target = c.id;
     b.onclick = () => {
-      const y = c.getBoundingClientRect().top + scrollY - $('.nav').offsetHeight - chips.offsetHeight - 10;
+      // layout position (offsetTop ignores the scroll-in fade's temporary 24px shift)
+      let y = 0; for (let e = c; e; e = e.offsetParent) y += e.offsetTop;
+      y -= $('.nav').offsetHeight + chips.offsetHeight + 10;
       scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' });
     };
     chips.appendChild(b);
