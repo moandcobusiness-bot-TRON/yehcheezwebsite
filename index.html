@@ -22,7 +22,7 @@
 :root{
   --black:#0e0e0e;
   --ink:#111111;
-  --orange:#f58714;
+  --orange:#f58612;
   --white:#ffffff;
   --rule:6px;
   --cond:"venenosa","Bebas Neue",Impact,sans-serif;
@@ -31,6 +31,7 @@
   --round:"Inter",sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
+html{font-synthesis:none} /* no fake bold/italic: a faked bold fills in venenosa's distressed texture */
 html{scroll-behavior:smooth;scroll-padding-top:90px}
 body{background:#1a1a1a;color:var(--white);font-family:var(--body)}
 img{display:block;max-width:100%;height:auto}
@@ -111,9 +112,9 @@ body.noscroll{overflow:hidden}
 .wordmark .l1,.wordmark .l2{display:block;font-size:clamp(6rem,14vw,15rem)}
 .vbar{width:6px;height:clamp(160px,17vw,280px);background:var(--white);border-radius:6px;justify-self:center}
 .tag{text-align:center}
-.tag .t1{font-family:var(--cond);color:var(--orange);font-size:clamp(2.4rem,4.4vw,4.8rem);line-height:1.1}
-.tag .t2{font-family:var(--cond);color:var(--white);font-size:clamp(2.6rem,5.4vw,5.8rem);line-height:1.15}
-.tag .t3{font-family:var(--wide);color:var(--orange);font-size:clamp(.95rem,1.85vw,1.9rem);letter-spacing:-.04em;margin-top:6px}
+.tag .t1{font-family:var(--cond);color:var(--orange);font-size:clamp(2.4rem,4.4vw,4.8rem);line-height:1.5}
+.tag .t2{font-family:var(--cond);color:var(--white);font-size:clamp(2.6rem,5.4vw,5.8rem);line-height:1.5}
+.tag .t3{font-family:var(--wide);color:var(--orange);font-size:clamp(.95rem,1.85vw,1.9rem);letter-spacing:-.04em;margin-top:.9em}
 .tag .t3 b{color:var(--white)}
 
 /* ================= STORY ================= */
@@ -157,7 +158,7 @@ body.noscroll{overflow:hidden}
 /* ================= STORY (image) ================= */
 .story2{display:grid;grid-template-columns:576fr 615fr;gap:var(--rule);background:var(--white);border-bottom:var(--rule) solid var(--white)}
 .story2-cell{position:relative;background:#000;line-height:0}
-.story2-cell:first-child{background:#f58714}
+.story2-cell:first-child{background:#f58612}
 .story2-cell img{display:block;width:100%;height:auto}
 /* Our Story text (fonts and spacing as on yehcheez.ca: venenosa heading, Inter Bold body).
    Sized in vw so it keeps the same proportions next to the paratha artwork at every width. */
@@ -178,7 +179,7 @@ body.noscroll{overflow:hidden}
 
 /* ================= MENU ================= */
 .menu{background:var(--ink);padding:clamp(30px,4vw,50px) clamp(16px,4vw,60px) clamp(40px,5vw,70px)}
-.menu > h2{font-family:var(--cond);color:var(--orange);text-align:center;font-size:clamp(4.5rem,9vw,8rem);line-height:1;margin-bottom:clamp(20px,3vw,40px)}
+.menu > h2{font-family:var(--cond);font-weight:400;color:var(--orange);text-align:center;font-size:clamp(4.5rem,9vw,8rem);line-height:1;margin-bottom:clamp(20px,3vw,40px)}
 .cols{display:grid;grid-template-columns:1fr 8px 1fr;gap:clamp(24px,4vw,60px);max-width:1100px;margin:0 auto}
 .vrule{background:var(--orange);border-radius:8px}
 .cat{margin-bottom:clamp(40px,5vw,70px)}
@@ -263,7 +264,7 @@ body.noscroll{overflow:hidden}
   .vbar{width:4px;height:26vw;border-radius:4px}
   .tag .t1{font-size:4.6vw}
   .tag .t2{font-size:6.2vw}
-  .tag .t3{font-size:2.15vw;margin-top:3vw;white-space:nowrap;letter-spacing:-.05em}
+  .tag .t3{font-size:2.15vw;margin-top:5vw;white-space:nowrap;letter-spacing:-.05em}
 
   .story{grid-template-columns:1fr}
   .graphic{font-size:2.55vw;padding:40px 18px}
@@ -432,7 +433,7 @@ body.plate-open .chai-top{opacity:0;pointer-events:none}
 .box{flex-direction:column}
 
 /* ---- 7. Bestseller stamp + chai steam ---- */
-.fx-stampbadge{display:inline-block;margin-left:10px;font-family:var(--cond);font-size:.95rem;letter-spacing:.06em;color:var(--white);background:#c0392b;border:2px dashed var(--white);border-radius:6px;padding:2px 7px 0;transform:rotate(-8deg) scale(0);vertical-align:middle;transition:transform .45s cubic-bezier(.2,1.8,.4,1)}
+.fx-stampbadge{display:inline-block;margin-left:10px;font-family:var(--cond);font-weight:400;font-size:.95rem;letter-spacing:.06em;color:var(--white);background:#c0392b;border:2px dashed var(--white);border-radius:6px;padding:2px 7px 0;transform:rotate(-8deg) scale(0);vertical-align:middle;transition:transform .45s cubic-bezier(.2,1.8,.4,1)}
 .fx-stampbadge.in{transform:rotate(-8deg) scale(1)}
 .fx-steam{display:inline-flex;gap:3px;margin-left:8px;vertical-align:bottom;height:20px}
 .fx-steam i{display:block;width:3px;height:14px;border-radius:3px;background:linear-gradient(transparent,rgba(255,255,255,.75));animation:fxSteam 1.8s ease-in-out infinite;opacity:0}
@@ -869,8 +870,8 @@ document.querySelectorAll('#order, .story2-order').forEach(a => {
       <line x1="-20" y1="40" x2="640" y2="330" stroke="#f9d27a" stroke-width="16"/>
       ${you}
       <g transform="translate(300 175)">
-        <circle r="30" fill="#f58714" opacity=".25"><animate attributeName="r" values="18;36;18" dur="2.4s" repeatCount="indefinite"/></circle>
-        <path d="M0 0 C-14 -18 -20 -28 -20 -38 a20 20 0 0 1 40 0 c0 10 -6 20 -20 38z" fill="#f58714" stroke="#111" stroke-width="3"/>
+        <circle r="30" fill="#f58612" opacity=".25"><animate attributeName="r" values="18;36;18" dur="2.4s" repeatCount="indefinite"/></circle>
+        <path d="M0 0 C-14 -18 -20 -28 -20 -38 a20 20 0 0 1 40 0 c0 10 -6 20 -20 38z" fill="#f58612" stroke="#111" stroke-width="3"/>
         <circle cy="-38" r="7" fill="#111"/>
       </g>
       <rect x="12" y="300" width="576" height="40" rx="8" fill="#111" opacity=".88"/>
