@@ -362,6 +362,90 @@ body.noscroll{overflow:hidden}
 }
 body.plate-open .chai-top{opacity:0;pointer-events:none}
 @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}*{animation:none!important}}
+/* ======================================================================
+   EXTRA INTERACTIONS — each block is tagged with its number (see the script).
+   ====================================================================== */
+
+/* ---- 1. Stamp-in hero ---- */
+.wordmark.fx-stamp{animation:fxStamp .7s cubic-bezier(.2,1.6,.4,1) both}
+@keyframes fxStamp{0%{transform:rotate(-16deg) scale(2.6);opacity:0;filter:blur(6px)}55%{opacity:1;filter:none}100%{transform:rotate(-7deg) scale(1)}}
+.tag.fx-stamp p{animation:fxSlide .55s cubic-bezier(.2,.9,.3,1.2) both}
+.tag.fx-stamp p:nth-child(1){animation-delay:.55s}
+.tag.fx-stamp p:nth-child(2){animation-delay:.75s}
+.tag.fx-stamp p:nth-child(3){animation-delay:1s}
+@keyframes fxSlide{from{opacity:0;transform:translateX(40px)}}
+.fx-dust{position:absolute;width:14px;height:14px;border-radius:50%;background:var(--orange);pointer-events:none;z-index:5}
+.hero{position:relative}
+
+/* ---- 2. Masala ticker ---- */
+.fx-ticker{background:var(--orange);color:var(--ink);overflow:hidden;border-top:var(--rule) solid var(--white);white-space:nowrap;user-select:none}
+.fx-track{display:inline-flex;animation:fxTick 32s linear infinite}
+.fx-ticker:hover .fx-track{animation-play-state:paused}
+.fx-track span{font-family:var(--cond);font-size:clamp(1.7rem,4vw,3rem);line-height:1;padding:.32em 0 .22em;letter-spacing:.02em}
+.fx-track i{font-style:normal;color:var(--white);margin:0 .6em;font-family:var(--body);font-weight:800;font-size:clamp(1rem,2.4vw,1.8rem);align-self:center}
+@keyframes fxTick{to{transform:translateX(-50%)}}
+
+/* ---- 3. Fly to plate ---- */
+.fx-fly{position:fixed;z-index:80;pointer-events:none;font-family:var(--body);font-weight:800;color:var(--ink);background:var(--orange);border:2px solid var(--ink);border-radius:999px;padding:4px 10px;font-size:.95rem;box-shadow:0 6px 16px rgba(0,0,0,.45)}
+
+/* ---- 4. Menu jump chips ---- */
+.fx-chips{position:sticky;z-index:20;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:10px 4px;margin:0 auto 18px;max-width:1100px;background:var(--ink)}
+.fx-chips::-webkit-scrollbar{display:none}
+.fx-chips button{flex:none;font-family:var(--cond);font-size:1.25rem;letter-spacing:.03em;color:var(--orange);background:transparent;border:2px solid var(--orange);border-radius:999px;padding:6px 14px 4px;cursor:pointer;transition:background .15s,color .15s}
+.fx-chips button.on{background:var(--orange);color:var(--ink)}
+
+/* ---- 5. Kya Khaoon? spinner ---- */
+.fx-kk-btn{display:flex;margin:0 auto clamp(20px,3vw,34px);font-family:var(--cond);font-size:clamp(1.5rem,3.4vw,2.2rem);letter-spacing:.03em;background:var(--white);color:var(--ink);border:3px solid var(--orange);border-radius:999px;padding:8px 22px 5px;cursor:pointer;box-shadow:0 0 0 0 rgba(245,135,20,.6);animation:fxPulse 2.4s ease-out infinite;align-items:center;gap:10px}
+.fx-kk-btn .dice{display:inline-block;transition:transform .5s}
+.fx-kk-btn:hover .dice{transform:rotate(200deg)}
+@keyframes fxPulse{0%{box-shadow:0 0 0 0 rgba(245,135,20,.6)}70%,100%{box-shadow:0 0 0 18px rgba(245,135,20,0)}}
+.fx-kk{position:fixed;inset:0;z-index:92;background:rgba(0,0,0,.75);display:none;align-items:center;justify-content:center;padding:18px}
+.fx-kk.open{display:flex}
+.fx-kk-card{background:var(--ink);border:4px solid var(--orange);border-radius:20px;width:min(520px,100%);padding:22px 18px 18px;text-align:center;box-shadow:10px 10px 0 #000;animation:tin .3s ease}
+.fx-kk-card h3{font-family:var(--cond);font-weight:400;color:var(--orange);font-size:clamp(2.6rem,9vw,3.6rem);line-height:1}
+.fx-kk-card .sub{color:#bdbdbd;font-weight:700;font-size:.85rem;margin:4px 0 16px}
+.fx-reels{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.fx-reel{background:var(--white);border-radius:12px;height:116px;overflow:hidden;position:relative;border:3px solid var(--orange)}
+.fx-reel .lab{position:absolute;top:4px;left:0;right:0;font-family:var(--cond);font-size:.95rem;color:#999;letter-spacing:.05em;z-index:2}
+.fx-strip{position:absolute;left:0;right:0;top:0}
+.fx-strip div{height:116px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:22px 6px 6px;color:var(--ink);font-weight:800;font-size:.8rem;line-height:1.1;text-transform:uppercase}
+.fx-strip div b{display:block;color:var(--orange);font-size:.9rem;margin-top:3px}
+.fx-kk-total{font-family:var(--cond);color:var(--white);font-size:1.6rem;margin:14px 0 12px;min-height:1.6rem}
+.fx-kk-acts{display:flex;gap:10px}
+.fx-kk-acts button{flex:1;font-family:var(--cond);font-size:1.35rem;padding:10px;border-radius:10px;border:0;cursor:pointer}
+.fx-kk-acts .go{background:var(--orange);color:var(--ink)}
+.fx-kk-acts .go[disabled]{opacity:.5;cursor:wait}
+.fx-kk-acts .again{background:#2a2a2a;color:var(--white)}
+.fx-kk-x{display:block;margin:12px auto 0;background:none;border:0;color:#9a9a9a;text-decoration:underline;font-weight:700;cursor:pointer}
+
+/* ---- 6. Oye Hoye Box hotspots ---- */
+.fx-boxwrap{position:relative;width:100%;max-width:1200px;line-height:0}
+.fx-hot{position:absolute;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;background:var(--white);border:4px solid var(--ink);cursor:pointer;padding:0}
+.fx-hot::after{content:"";position:absolute;inset:-10px;border-radius:50%;border:3px solid var(--white);animation:fxRing 1.8s ease-out infinite}
+@keyframes fxRing{from{transform:scale(.5);opacity:1}to{transform:scale(1.5);opacity:0}}
+.fx-hot.open{background:var(--orange)}
+.fx-tip{position:absolute;z-index:6;transform:translate(-50%,calc(-100% - 22px));background:var(--ink);color:var(--white);border:3px solid var(--white);border-radius:12px;padding:8px 12px;line-height:1.2;font-weight:800;font-size:.9rem;white-space:nowrap;text-align:center;pointer-events:none;animation:tin .2s ease}
+.fx-tip small{display:block;color:var(--orange);font-weight:700;font-size:.75rem;margin-top:2px}
+.fx-boxbtn{font-family:var(--cond);font-size:clamp(1.5rem,4vw,2.4rem);background:var(--ink);color:var(--orange);border:4px solid var(--ink);border-radius:14px;padding:10px 24px 6px;margin:4px 16px 24px;cursor:pointer;box-shadow:6px 6px 0 rgba(0,0,0,.35);transition:transform .15s}
+.fx-boxbtn:hover{transform:translateY(-2px) rotate(-1deg)}
+.fx-boxbtn b{color:var(--white);font-weight:400}
+.box{flex-direction:column}
+
+/* ---- 7. Bestseller stamp + chai steam ---- */
+.fx-stampbadge{display:inline-block;margin-left:10px;font-family:var(--cond);font-size:.95rem;letter-spacing:.06em;color:var(--white);background:#c0392b;border:2px dashed var(--white);border-radius:6px;padding:2px 7px 0;transform:rotate(-8deg) scale(0);vertical-align:middle;transition:transform .45s cubic-bezier(.2,1.8,.4,1)}
+.fx-stampbadge.in{transform:rotate(-8deg) scale(1)}
+.fx-steam{display:inline-flex;gap:3px;margin-left:8px;vertical-align:bottom;height:20px}
+.fx-steam i{display:block;width:3px;height:14px;border-radius:3px;background:linear-gradient(transparent,rgba(255,255,255,.75));animation:fxSteam 1.8s ease-in-out infinite;opacity:0}
+.fx-steam i:nth-child(2){animation-delay:.4s}
+.fx-steam i:nth-child(3){animation-delay:.8s}
+@keyframes fxSteam{0%{opacity:0;transform:translateY(6px) scaleY(.6)}40%{opacity:1}100%{opacity:0;transform:translateY(-10px) scaleY(1.2) skewX(12deg)}}
+
+/* ---- 8. Share my plate ---- */
+.pp-share{background:var(--white);color:var(--ink)}
+
+/* ---- 9. Chai rain ---- */
+.fx-cup{position:fixed;top:-60px;z-index:95;pointer-events:none;color:var(--orange)}
+.fx-cup svg{width:100%;height:100%}
 </style>
 </head>
 <body>
@@ -1010,6 +1094,7 @@ document.querySelectorAll('#order, .story2-order').forEach(a => {
     }
   };
   const setPanel = open => { panel.classList.toggle('open', open); document.body.classList.toggle('plate-open', open); pill.setAttribute('aria-expanded', open); };
+  window.YC = { add: (name, price, cat) => change(name, 1, price, cat), plate, taxCents, toast };
   pill.onclick = () => setPanel(!panel.classList.contains('open'));
   $('#ppClose').onclick = () => setPanel(false);
   $('#ppClear').onclick = () => { plate.clear(); render(); toast(['Sab saaf! Naya shuru karo.', 'All cleared! Start fresh.']); };
@@ -1075,6 +1160,257 @@ document.querySelectorAll('#order, .story2-order').forEach(a => {
     const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12 });
     els.forEach(el => io.observe(el));
   }
+})();
+</script>
+<script>
+/* ======================================================================
+   EXTRA INTERACTIONS: 1 stamp-in intro, 2 masala ticker, 3 fly to plate,
+   4 menu jump chips, 5 Kya Khaoon? spinner, 6 Oye Hoye Box hotspots,
+   7 bestseller stamp + chai steam, 8 share my plate, 9 chai rain.
+   Uses window.YC (plate API) from the interactions script above.
+   ====================================================================== */
+(() => {
+  const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const YC = window.YC;
+  const el = (tag, cls, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
+
+  /* ---------- 1. Stamp-in hero ---------- */
+  const wm = $('.wordmark'), tag = $('.tag'), hero = $('.hero');
+  const dust = () => {
+    const hb = hero.getBoundingClientRect(), wb = wm.getBoundingClientRect();
+    const cx = wb.left - hb.left + wb.width / 2, cy = wb.top - hb.top + wb.height / 2;
+    for (let i = 0; i < 16; i++) {
+      const d = el('span', 'fx-dust'); hero.appendChild(d);
+      const a = Math.random() * Math.PI * 2, r = wb.width * (.45 + Math.random() * .35), s = .3 + Math.random() * .9;
+      d.style.left = cx + 'px'; d.style.top = cy + 'px';
+      d.animate([{ transform: `translate(-50%,-50%) scale(${s})`, opacity: .9 },
+                 { transform: `translate(calc(-50% + ${Math.cos(a) * r}px), calc(-50% + ${Math.sin(a) * r * .6}px)) scale(0)`, opacity: 0 }],
+                { duration: 650 + Math.random() * 300, easing: 'cubic-bezier(.1,.8,.3,1)' }).onfinish = () => d.remove();
+    }
+  };
+  const stamp = () => {
+    if (reduce) return;
+    [wm, tag].forEach(x => { x.classList.remove('fx-stamp'); void x.offsetWidth; x.classList.add('fx-stamp'); });
+    setTimeout(dust, 380);
+  };
+  stamp();
+
+  /* ---------- 2. Masala ticker ---------- */
+  const WORDS = ['PARATHA ROLLS', 'KARAK CHAI', 'NO NAAN-SENSE', 'MASALA FRIES', 'KHANA KHA K JANA HAAN!', 'BUN KABAB', 'CHAAT PAPDI', 'MILTON KA PAKISTANI ADDA'];
+  const half = WORDS.map(w => `<span>${w}</span><i>&#10022;</i>`).join('');
+  const ticker = el('div', 'fx-ticker', `<div class="fx-track" aria-hidden="true">${half}${half}</div>`);
+  ticker.setAttribute('role', 'presentation');
+  hero.after(ticker);
+
+  /* ---------- 3. Fly to plate (+ count-up, + vibration) ---------- */
+  const pill = $('#platePill'), pillTot = $('#pillTot');
+  const flyFrom = (fromRect, label) => {
+    navigator.vibrate?.(15);
+    if (reduce) return;
+    requestAnimationFrame(() => {
+      const to = pill.getBoundingClientRect(); if (!to.width) return;
+      const f = el('div', 'fx-fly'); f.textContent = label; document.body.appendChild(f);
+      const x0 = fromRect.left + fromRect.width / 2, y0 = fromRect.top + fromRect.height / 2;
+      const x1 = to.left + to.width / 2, y1 = to.top + to.height / 2;
+      const mx = (x0 + x1) / 2, my = Math.min(y0, y1) - 120;
+      f.style.left = '0px'; f.style.top = '0px';
+      const t = (x, y, s) => `translate(${x}px, ${y}px) translate(-50%,-50%) scale(${s})`;
+      f.animate([{ transform: t(x0, y0, 1), opacity: 1 }, { transform: t(mx, my, 1.15), opacity: 1, offset: .45 }, { transform: t(x1, y1, .4), opacity: .2 }],
+                { duration: 700, easing: 'cubic-bezier(.4,0,.6,1)' }).onfinish = () => {
+        f.remove(); pill.classList.remove('jiggle'); void pill.offsetWidth; pill.classList.add('jiggle');
+      };
+    });
+  };
+  $$('.menu .row.addable').forEach(row => {
+    const go = () => flyFrom(row.querySelector('.p').getBoundingClientRect(), '+$' + row.querySelector('.p').textContent.trim());
+    row.addEventListener('click', go);
+    row.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') go(); });
+  });
+  // count the pill total up/down instead of jumping.
+  // The observer also sees the animation's own writes, so those are recognised and ignored.
+  let shown = 0, mine = null, raf = 0;
+  new MutationObserver(() => {
+    const txt = pillTot.textContent;
+    if (txt === mine) return;                      // our own animation frame
+    const target = parseFloat(txt.replace(/[^\d.]/g, '')) || 0;
+    cancelAnimationFrame(raf);
+    if (reduce || target === shown) { shown = target; return; }
+    const from = shown, t0 = performance.now(), dur = 550; shown = target;
+    const step = now => {
+      const k = Math.min(1, (now - t0) / dur), v = from + (target - from) * (1 - Math.pow(1 - k, 3));
+      mine = '$' + v.toFixed(2); pillTot.textContent = mine;
+      if (k < 1) raf = requestAnimationFrame(step);
+    };
+    raf = requestAnimationFrame(step);
+  }).observe(pillTot, { childList: true, characterData: true, subtree: true });
+
+  /* ---------- 4. Menu jump chips ---------- */
+  const cats = $$('.menu .cat');
+  const short = { 'PARATHA ROLLS': 'ROLLS' };
+  const chips = el('nav', 'fx-chips'); chips.setAttribute('aria-label', 'Menu sections');
+  cats.forEach((c, i) => {
+    const name = c.querySelector('h3').textContent.trim(); c.id = c.id || 'cat-' + i;
+    const b = el('button'); b.type = 'button'; b.textContent = short[name] || name; b.dataset.target = c.id;
+    b.onclick = () => {
+      const y = c.getBoundingClientRect().top + scrollY - $('.nav').offsetHeight - chips.offsetHeight - 10;
+      scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' });
+    };
+    chips.appendChild(b);
+  });
+  $('.menu .cols').before(chips);
+  const placeChips = () => chips.style.top = $('.nav').offsetHeight + 'px';
+  placeChips(); addEventListener('resize', placeChips);
+  // order chips in reading order (left column then right column on desktop = DOM order already)
+  let lastOn = null;
+  const markChip = () => {
+    const line = $('.nav').offsetHeight + chips.offsetHeight + 40;
+    let cur = cats[0];
+    cats.forEach(c => { if (c.getBoundingClientRect().top < line) cur = c; });
+    // two-column desktop: pick the category whose top is closest above the line
+    let best = null, bestTop = -Infinity;
+    cats.forEach(c => { const t = c.getBoundingClientRect().top; if (t < line && t > bestTop) { best = c; bestTop = t; } });
+    cur = best || cats[0];
+    if (cur === lastOn) return; lastOn = cur;
+    chips.querySelectorAll('button').forEach(b => {
+      const isOn = b.dataset.target === cur.id; b.classList.toggle('on', isOn);
+      if (isOn) chips.scrollTo({ left: b.offsetLeft - chips.clientWidth / 2 + b.offsetWidth / 2, behavior: reduce ? 'auto' : 'smooth' });
+    });
+  };
+  addEventListener('scroll', markChip, { passive: true }); markChip();
+
+  /* ---------- 5. Kya Khaoon? spinner ---------- */
+  const rowsOf = (catNames, skip = []) => $$('.menu .cat').filter(c => catNames.includes(c.querySelector('h3').textContent.trim()))
+    .flatMap(c => [...c.querySelectorAll('.row')]).map(r => {
+      const n = r.querySelector('.n').cloneNode(true); n.querySelectorAll('.note, em, .fx-stampbadge, .fx-steam').forEach(x => x.remove());
+      return { name: n.textContent.replace(/\s+/g, ' ').trim(), price: parseFloat(r.querySelector('.p').textContent), cat: r.closest('.cat').querySelector('h3').textContent.trim() };
+    }).filter(x => !isNaN(x.price) && !skip.some(s => x.name.toLowerCase().includes(s)));
+  const POOLS = [
+    { lab: 'MAIN', items: rowsOf(['PARATHA ROLLS', 'SANDWICHES'], ['combo', 'upgrade']) },
+    { lab: 'SIDE', items: rowsOf(['FRIES', 'SHAREABLES', 'SIDES'], ['dipping', 'plain paratha']) },
+    { lab: 'DRINK', items: rowsOf(['BEVERAGES'], ['water', '3 pack']) }
+  ];
+  const kkBtn = el('button', 'fx-kk-btn', '<span class="dice">&#127922;</span> KYA KHAOON? <span style="font-size:.6em;opacity:.7">(SPIN IT)</span>');
+  kkBtn.type = 'button';
+  $('.menu > h2').after(kkBtn);
+  const kk = el('div', 'fx-kk', `<div class="fx-kk-card" role="dialog" aria-modal="true" aria-label="Kya Khaoon">
+      <h3>KYA KHAOON?</h3><p class="sub">Can't decide? Let the reels pick a main, a side and a drink.</p>
+      <div class="fx-reels">${POOLS.map(p => `<div class="fx-reel"><span class="lab">${p.lab}</span><div class="fx-strip"></div></div>`).join('')}</div>
+      <div class="fx-kk-total" aria-live="polite"></div>
+      <div class="fx-kk-acts"><button class="again" type="button">SPIN AGAIN</button><button class="go" type="button">ADD ALL TO PLATE</button></div>
+      <button class="fx-kk-x" type="button">Nahi, khud dekhta hoon (I'll pick myself)</button></div>`);
+  document.body.appendChild(kk);
+  let picks = [];
+  const card = (it) => `<div>${it.name}<b>$${it.price.toFixed(2)}</b></div>`;
+  const spin = () => {
+    const go = kk.querySelector('.go'); go.disabled = true; kk.querySelector('.fx-kk-total').textContent = '';
+    picks = POOLS.map(p => p.items[Math.floor(Math.random() * p.items.length)]);
+    const strips = kk.querySelectorAll('.fx-strip'); let done = 0;
+    strips.forEach((s, i) => {
+      const pool = POOLS[i].items, n = reduce ? 0 : 14 + i * 6, seq = [];
+      for (let k = 0; k < n; k++) seq.push(pool[Math.floor(Math.random() * pool.length)]);
+      seq.push(picks[i]);
+      s.innerHTML = seq.map(card).join('');
+      s.getAnimations().forEach(a => a.cancel());
+      const end = () => { s.style.transform = `translateY(${-(seq.length - 1) * 116}px)`; if (++done === 3) finish(); };
+      if (reduce) return end();
+      s.animate([{ transform: 'translateY(0)' }, { transform: `translateY(${-(seq.length - 1) * 116}px)` }],
+                { duration: 1100 + i * 450, easing: 'cubic-bezier(.15,.7,.25,1)', fill: 'forwards' }).onfinish = end;
+    });
+    const finish = () => {
+      const tot = picks.reduce((a, b) => a + b.price, 0);
+      kk.querySelector('.fx-kk-total').textContent = `COMBO: $${tot.toFixed(2)} + HST`;
+      go.disabled = false; navigator.vibrate?.([20, 40, 20]);
+    };
+  };
+  const openKK = () => { kk.classList.add('open'); spin(); };
+  kkBtn.onclick = openKK;
+  kk.querySelector('.again').onclick = spin;
+  kk.querySelector('.go').onclick = () => {
+    picks.forEach(p => YC.add(p.name, p.price, p.cat)); kk.classList.remove('open');
+    YC.toast(['Mubarak ho! Combo plate mein.', 'Congrats! The combo is on your plate.']);
+  };
+  kk.querySelector('.fx-kk-x').onclick = () => kk.classList.remove('open');
+  kk.addEventListener('click', e => { if (e.target === kk) kk.classList.remove('open'); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') kk.classList.remove('open'); });
+
+  /* ---------- 6. Oye Hoye Box hotspots ---------- */
+  const box = $('#box'), boxImg = box.querySelector('img');
+  if (boxImg) {
+    const wrap = el('div', 'fx-boxwrap'); boxImg.before(wrap); wrap.appendChild(boxImg);
+    const SPOTS = [
+      { x: 24, y: 46, t: '1 Chicken Club Sandwich', s: 'Toasted, triple-decker' },
+      { x: 44, y: 60, t: '1 Chicken Tikka "Kaisa Diya"', s: 'Our quesadilla, desi style' },
+      { x: 62, y: 54, t: '2 Chicken Rolls', s: 'Malai Special + Tikka Chutney' },
+      { x: 84, y: 31, t: '4 Drinks', s: 'Ice-cold cans' },
+      { x: 29, y: 78, t: 'Large Masala Fries', s: 'With dips on the side' }
+    ];
+    let tip = null, openDot = null;
+    const closeTip = () => { tip?.remove(); tip = null; openDot?.classList.remove('open'); openDot = null; };
+    SPOTS.forEach(sp => {
+      const d = el('button', 'fx-hot'); d.type = 'button'; d.style.left = sp.x + '%'; d.style.top = sp.y + '%';
+      d.setAttribute('aria-label', sp.t);
+      d.onclick = e => {
+        e.stopPropagation(); const same = openDot === d; closeTip(); if (same) return;
+        tip = el('div', 'fx-tip'); tip.innerHTML = `${sp.t}<small>${sp.s}</small>`;
+        tip.style.left = Math.min(80, Math.max(20, sp.x)) + '%'; tip.style.top = sp.y + '%';
+        wrap.appendChild(tip); d.classList.add('open'); openDot = d;
+      };
+      wrap.appendChild(d);
+    });
+    document.addEventListener('click', closeTip);
+    const bb = el('button', 'fx-boxbtn', 'ADD THE OYE HOYE BOX <b>&middot; $55.99</b>'); bb.type = 'button';
+    bb.onclick = () => {
+      YC.add('Oye Hoye Box', 55.99, 'BOX'); flyFrom(bb.getBoundingClientRect(), '+$55.99');
+      YC.toast(['Oye hoye! Poori family ka scene set.', "Oh wow! The whole family's sorted."]);
+    };
+    box.appendChild(bb);
+  }
+
+  /* ---------- 7. Bestseller stamp + chai steam ---------- */
+  const rowByName = n => $$('.menu .row').find(r => r.querySelector('.n').textContent.replace(/\s+/g, ' ').trim().toLowerCase().startsWith(n));
+  const best = rowByName('masala chipotle garlic');
+  if (best) {
+    const b = el('span', 'fx-stampbadge', 'BESTSELLER'); best.querySelector('.n').appendChild(b);
+    new IntersectionObserver((es, io) => { if (es[0].isIntersecting) { setTimeout(() => b.classList.add('in'), 250); io.disconnect(); } }, { threshold: 1 }).observe(b);
+  }
+  ['karak chai'].forEach(n => { const r = rowByName(n); if (r) r.querySelector('.n').appendChild(el('span', 'fx-steam', '<i></i><i></i><i></i>')); });
+
+  /* ---------- 8. Share my plate ---------- */
+  const share = el('button', 'pp-share', 'SHARE'); share.type = 'button';
+  $('.pp-actions').insertBefore(share, $('#ppClear'));
+  share.onclick = async () => {
+    if (!YC.plate.size) return;
+    let sub = 0; const lines = [];
+    YC.plate.forEach((it, name) => { const c = it.qty * Math.round(it.price * 100); sub += c; lines.push(`${it.qty} x ${name} - $${(c / 100).toFixed(2)}`); });
+    const tax = YC.taxCents(sub);
+    const text = `Meri Plate @ Yeh Cheez! Milton\n\n${lines.join('\n')}\n\nSubtotal $${(sub / 100).toFixed(2)}\nHST (13%) $${(tax / 100).toFixed(2)}\nTOTAL $${((sub + tax) / 100).toFixed(2)}\n\nKhana kha k jana haan!`;
+    try {
+      if (navigator.share) { await navigator.share({ title: 'Meri Plate @ Yeh Cheez!', text, url: location.href.split('#')[0] }); }
+      else { await navigator.clipboard.writeText(text); YC.toast(['Plate copy ho gayi!', 'Your plate is copied. Paste it anywhere.']); }
+    } catch (e) { /* user cancelled share */ }
+  };
+
+  /* ---------- 9. Chai rain easter egg ---------- */
+  const CUP = '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 3c-1 1.5 1 2.5 0 4M16 3c-1 1.5 1 2.5 0 4M21 3c-1 1.5 1 2.5 0 4"/><path d="M6 11h18v8a7 7 0 0 1-7 7h-4a7 7 0 0 1-7-7z" fill="#fff"/><path d="M24 13h2a3 3 0 0 1 0 6h-2"/></svg>';
+  let raining = false;
+  const chaiRain = () => {
+    if (raining) return; raining = true;
+    YC.toast(['Chai pe charcha!', "Let's talk over chai!"]); navigator.vibrate?.([30, 60, 30]);
+    const n = reduce ? 0 : 26;
+    for (let i = 0; i < n; i++) {
+      const c = el('div', 'fx-cup', CUP), size = 30 + Math.random() * 30;
+      c.style.width = c.style.height = size + 'px'; c.style.left = Math.random() * 100 + 'vw';
+      document.body.appendChild(c);
+      c.animate([{ transform: `translateY(0) rotate(${Math.random() * 60 - 30}deg)` }, { transform: `translateY(${innerHeight + 120}px) rotate(${Math.random() * 360 - 180}deg)` }],
+                { duration: 1800 + Math.random() * 1600, delay: Math.random() * 900, easing: 'cubic-bezier(.4,0,.8,.6)', fill: 'backwards' }).onfinish = () => c.remove();
+    }
+    setTimeout(() => raining = false, 3500);
+  };
+  let typed = '';
+  addEventListener('keydown', e => { if (e.key.length !== 1) return; typed = (typed + e.key.toLowerCase()).slice(-4); if (typed === 'chai') chaiRain(); });
+  let taps = [];
+  wm.addEventListener('click', () => { const t = Date.now(); taps = taps.filter(x => t - x < 1500).concat(t); if (taps.length >= 5) { taps = []; chaiRain(); } });
 })();
 </script>
 </body>
