@@ -11,8 +11,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Dela+Gothic+One&display=swap" rel="stylesheet">
-<!-- venenosa draws a few punctuation marks blank (? : - + / etc.); those characters fall back to Bebas Neue, loaded for just these characters -->
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&text=%27%2B-%2F%3A%3B%3C%3D%3E%3F%5B%5C%5D%5E_%60%7B%7C%7D%7E%E2%86%92&display=swap" rel="stylesheet">
+<!-- venenosa draws some punctuation blank (? : - + / … · “ ” – — etc.); those are left out of fonts/venenosa.woff2 and fall back to Bebas Neue, loaded for just these characters -->
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&text=%27%2B-%2F%3A%3B%3C%3D%3E%3F%5B%5C%5D%5E_%60%7B%7C%7D~%E2%86%92%C2%A1%C2%AB%C2%B0%C2%B7%C2%BB%C2%BF%C3%97%E2%80%93%E2%80%94%E2%80%98%E2%80%99%E2%80%9A%E2%80%9C%E2%80%9D%E2%80%9E%E2%80%A2%E2%80%A6%E2%80%B9%E2%80%BA&display=swap" rel="stylesheet">
 <link rel="preload" href="fonts/venenosa.woff2" as="font" type="font/woff2" crossorigin>
 <style>
 /* Fonts match yehcheez.ca:
@@ -305,6 +305,14 @@ body.noscroll{overflow:hidden}
 .toast-wrap{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);z-index:70;display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none;width:min(92vw,460px)}
 .toast{background:var(--white);color:var(--ink);font-weight:800;font-size:.95rem;padding:12px 18px;border-radius:12px;border-left:6px solid var(--orange);box-shadow:0 8px 24px rgba(0,0,0,.45);animation:tin .25s ease;text-align:center}
 .toast.out{animation:tout .25s ease forwards}
+.tr{display:block;font-family:var(--body);font-weight:700;font-size:.42em;letter-spacing:.06em;line-height:1.2;opacity:.8;text-transform:uppercase}
+.locate-msg .en{display:block;font-weight:600;font-style:italic;opacity:.8;margin-top:2px}
+.ruko-card p .en{display:block;font-weight:600;font-style:italic;margin-top:6px}
+.plate-pill .pl-t{display:flex;flex-direction:column;align-items:flex-start;line-height:.95}
+.plate-pill .pl-t small{font-family:var(--body);font-weight:800;font-size:.5rem;letter-spacing:.1em;opacity:.75;margin-top:2px}
+.pp-head h3 small{font-family:var(--body);font-weight:800;font-size:.7rem;letter-spacing:.08em;opacity:.75;margin-left:6px}
+.chai-top span small{display:block;font-family:var(--body);font-weight:800;font-size:.5rem;letter-spacing:.06em;opacity:.8;text-align:center}
+.row .note.tr-note{color:#bdbdbd;font-style:italic}
 .toast .en{display:block;font-weight:600;font-style:italic;font-size:.82rem;color:#555;margin-top:4px}
 .ruko-card .call-num{font-family:var(--cond);font-size:clamp(2rem,6vw,2.6rem);font-weight:400;margin:10px 0 18px;letter-spacing:.02em}
 @keyframes tin{from{opacity:0;transform:translateY(12px)}}
@@ -367,6 +375,20 @@ body.plate-open .chai-top{opacity:0;pointer-events:none}
    EXTRA INTERACTIONS — each block is tagged with its number (see the script).
    ====================================================================== */
 
+/* ---- 10. Food icons on menu items ---- */
+.row .n{flex:1}
+.row .ico{flex:none;width:1.75em;font-size:clamp(1.15rem,1.9vw,1.4rem);line-height:1.1;text-align:center;margin-right:-8px;display:inline-block;transform-origin:50% 80%;font-style:normal;user-select:none;transition:transform .45s cubic-bezier(.2,1.8,.4,1),opacity .3s}
+.row .ico.pre{transform:scale(0) rotate(-30deg);opacity:0}
+.row.addable:hover .ico,.row.addable:focus-visible .ico{animation:icoWiggle .6s ease}
+@keyframes icoWiggle{20%{transform:rotate(-14deg) scale(1.15)}40%{transform:rotate(12deg) scale(1.15)}60%{transform:rotate(-8deg)}80%{transform:rotate(5deg)}}
+.row .ico.bite{animation:icoBite .45s ease}
+@keyframes icoBite{30%{transform:scale(1.45) rotate(-10deg)}55%{transform:scale(.85)}100%{transform:scale(1)}}
+.fx-crumb{position:fixed;z-index:81;pointer-events:none;font-size:1.1rem;line-height:1}
+.pp-list .nm .pp-ico{margin-right:6px}
+.fx-chips button .ci{margin-right:4px;font-size:.95em}
+.fx-strip div .ki{font-size:1.4em;flex:none}
+.fx-strip div .kn{flex:1}
+
 /* ---- 1. Stamp-in hero ---- */
 .wordmark.fx-stamp{animation:fxStamp .7s cubic-bezier(.2,1.6,.4,1) both}
 @keyframes fxStamp{0%{transform:rotate(-16deg) scale(2.6);opacity:0;filter:blur(6px)}55%{opacity:1;filter:none}100%{transform:rotate(-7deg) scale(1)}}
@@ -383,6 +405,7 @@ body.plate-open .chai-top{opacity:0;pointer-events:none}
 .fx-track{display:inline-flex;animation:fxTick 32s linear infinite}
 .fx-ticker:hover .fx-track{animation-play-state:paused}
 .fx-track span{font-family:var(--cond);font-size:clamp(1.7rem,4vw,3rem);line-height:1;padding:.32em 0 .22em;letter-spacing:.02em}
+.fx-track .fx-tk-en{font-family:var(--body);font-weight:800;font-size:.42em;color:var(--white);letter-spacing:.04em;vertical-align:middle;text-transform:uppercase}
 .fx-track i{font-style:normal;color:var(--white);margin:0 .6em;font-family:var(--body);font-weight:800;font-size:clamp(1rem,2.4vw,1.8rem);align-self:center}
 @keyframes fxTick{to{transform:translateX(-50%)}}
 
@@ -397,6 +420,9 @@ body.plate-open .chai-top{opacity:0;pointer-events:none}
 
 /* ---- 5. Kya Khaoon? spinner ---- */
 .fx-kk-btn{display:flex;margin:0 auto clamp(20px,3vw,34px);font-family:var(--cond);font-size:clamp(1.5rem,3.4vw,2.2rem);letter-spacing:.03em;background:var(--white);color:var(--ink);border:3px solid var(--orange);border-radius:999px;padding:8px 22px 5px;cursor:pointer;box-shadow:0 0 0 0 rgba(245,135,20,.6);animation:fxPulse 2.4s ease-out infinite;align-items:center;gap:10px}
+.fx-kk-btn .kkb{display:flex;flex-direction:column;align-items:center;line-height:1}
+.fx-kk-btn .kkb-t{white-space:nowrap}
+.fx-kk-btn .tr{font-size:.4em;margin-top:4px;opacity:.7}
 .fx-kk-btn .dice{display:inline-block;transition:transform .5s}
 .fx-kk-btn:hover .dice{transform:rotate(200deg)}
 @keyframes fxPulse{0%{box-shadow:0 0 0 0 rgba(245,135,20,.6)}70%,100%{box-shadow:0 0 0 18px rgba(245,135,20,0)}}
@@ -427,6 +453,7 @@ body.plate-open .chai-top{opacity:0;pointer-events:none}
 @keyframes fxRing{from{transform:scale(.5);opacity:1}to{transform:scale(1.5);opacity:0}}
 .fx-hot.open{background:var(--orange)}
 .fx-tip{position:absolute;z-index:6;transform:translate(-50%,calc(-100% - 22px));background:var(--ink);color:var(--white);border:3px solid var(--white);border-radius:12px;padding:8px 12px;line-height:1.2;font-weight:800;font-size:.9rem;white-space:nowrap;text-align:center;pointer-events:none;animation:tin .2s ease}
+.fx-tip{white-space:normal;width:max-content;max-width:min(260px,78vw)}
 .fx-tip small{display:block;color:var(--orange);font-weight:700;font-size:.75rem;margin-top:2px}
 .fx-boxbtn{font-family:var(--cond);font-size:clamp(1.5rem,4vw,2.4rem);background:var(--ink);color:var(--orange);border:4px solid var(--ink);border-radius:14px;padding:10px 24px 6px;margin:4px 16px 24px;cursor:pointer;box-shadow:6px 6px 0 rgba(0,0,0,.35);transition:transform .15s}
 .fx-boxbtn:hover{transform:translateY(-2px) rotate(-1deg)}
@@ -605,7 +632,7 @@ body.plate-open .chai-top{opacity:0;pointer-events:none}
           <div class="cat-h"><h3>SANDWICHES</h3></div>
           <div class="row roomy"><span class="n">Chicken Club Sandwich<span class="note">(SERVED WITH FRIES AND CHIPOTLE DIP)</span></span><span class="p">17.49</span></div>
           <div class="row roomy"><span class="n">Chicken Grilled Cheese Sandwich<span class="note">(SERVED WITH FRIES)</span></span><span class="p">13.99</span></div>
-          <div class="row roomy" style="padding-top:22px"><span class="n">Chicken Tikka <span class="joke"><em>KAISA DIYA?</em><s>Quesadilla</s></span><span class="note">(SERVED WITH SALSA AND CHIPOTLE DIP)</span></span><span class="p">13.99</span></div>
+          <div class="row roomy" style="padding-top:22px"><span class="n">Chicken Tikka <span class="joke"><em>KAISA DIYA?</em><s>Quesadilla</s></span><span class="note">(SERVED WITH SALSA AND CHIPOTLE DIP)</span><span class="note tr-note">"KAISA DIYA?" = "HOW DID WE SERVE IT?" (SOUNDS LIKE QUESADILLA!)</span></span><span class="p">13.99</span></div>
           <div class="row roomy"><span class="n">Vegetarian Quesadilla<span class="note">(SERVED WITH SALSA AND CHIPOTLE DIP)</span></span><span class="p">11.59</span></div>
           <div class="row roomy"><span class="n">Bun Kabab<span class="note">(DAAL AND AALO DIPPED IN EGG**)</span></span><span class="p">8.49</span></div>
           <p class="foot">**Eggless option available. Ask staff while ordering</p>
@@ -662,7 +689,7 @@ body.plate-open .chai-top{opacity:0;pointer-events:none}
         </div>
         <div class="locate">
           <div class="locate-btns">
-            <button class="btn dark" id="locateBtn">KITNA DOOR? &rarr; SHOW MY ROUTE</button>
+            <button class="btn dark" id="locateBtn">KITNA DOOR? (HOW FAR?) &rarr; SHOW MY ROUTE</button>
             <a class="btn gmaps" id="gmapsOpen" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
               OPEN IN GOOGLE MAPS
@@ -841,11 +868,13 @@ document.querySelectorAll('#order, .story2-order').forEach(a => {
   const bearing = (a, b) => { const y = Math.sin(rad(b.lng - a.lng)) * Math.cos(rad(b.lat));
     const x = Math.cos(rad(a.lat)) * Math.sin(rad(b.lat)) - Math.sin(rad(a.lat)) * Math.cos(rad(b.lat)) * Math.cos(rad(b.lng - a.lng));
     return (Math.atan2(y, x) * 180 / Math.PI + 360) % 360; };
-  const quip = km => km < 1 ? 'Arre, bilkul paas ho! Chappal pehno aur aa jao.'
-    : km < 5 ? 'Bas thora sa door. Rolls garam mil jayenge.'
-    : km < 20 ? 'Chhoti si drive. Playlist lagao, bhook barhao.'
-    : km < 80 ? 'Road trip! Itni door se aa rahe ho toh combo banta hai.'
-    : 'Itni door se? Pyaar ho toh aisa. Delivery check kar lo!';
+  const quip = km => km < 1 ? ['Arre, bilkul paas ho! Chappal pehno aur aa jao.', "Oh, you're super close! Slip on your sandals and come over."]
+    : km < 5 ? ['Bas thora sa door. Rolls garam mil jayenge.', 'Just a little way off. Your rolls will still be hot.']
+    : km < 20 ? ['Chhoti si drive. Playlist lagao, bhook barhao.', 'A short drive. Put on a playlist, work up an appetite.']
+    : km < 80 ? ['Road trip! Itni door se aa rahe ho toh combo banta hai.', "Road trip! Coming from that far, you've earned a combo."]
+    : ['Itni door se? Pyaar ho toh aisa. Delivery check kar lo!', "From that far? Now that's love. Maybe check delivery!"];
+  // Urdu line + English line under it
+  const say = (ur, en, lead = '') => { msg.textContent = lead + ur; if (en) { const e = document.createElement('span'); e.className = 'en'; e.textContent = en; msg.appendChild(e); } };
   const eta = km => { const road = km * 1.3; // straight line → rough road distance
     return road < 1.5 ? `~${Math.max(2, Math.round(road / 5 * 60))} min walk` : `~${Math.max(3, Math.round(road / (road < 10 ? 35 : road < 30 ? 55 : 80) * 60 + 3))} min drive`; };
 
@@ -887,7 +916,7 @@ document.querySelectorAll('#order, .story2-order').forEach(a => {
     card.classList.toggle('offline', !isOnline);
     badge.textContent = isOnline ? 'LIVE MAP' : 'OFFLINE MAP';
     if (isOnline) loadLive();
-    else { drawOffline(); msg.textContent = 'Internet gaya? Koi baat nahi, hum wahin hain. Call karo ya address note kar lo.'; }
+    else { drawOffline(); say('Internet gaya? Koi baat nahi, hum wahin hain. Call karo ya address note kar lo.', "Internet gone? No worries, we're still here. Call us or note down the address."); }
   };
   const probe = () => new Promise(res => {
     if (!navigator.onLine) return res(false);
@@ -905,14 +934,15 @@ document.querySelectorAll('#order, .story2-order').forEach(a => {
   const showDistance = (pos, fromCache) => {
     if (!hasCoords) { msg.textContent = 'Route ready on the map.'; return; }
     const km = distKm(pos, S);
-    msg.textContent = `${fromCache ? 'Last time you were' : 'You are'} about ${km.toFixed(1)} km away (${eta(km)}, roughly). ${quip(km)}`;
+    const [ur, en] = quip(km);
+    say(ur, en, `${fromCache ? 'Last time you were' : 'You are'} about ${km.toFixed(1)} km away (${eta(km)}, roughly). `);
   };
   const last = store.get('ycLastSpot');
   if (last) showDistance(last, true);
 
   btn.addEventListener('click', () => {
-    if (!('geolocation' in navigator)) { msg.textContent = 'Is device pe location available nahi. Directions button try karo!'; return; }
-    btn.disabled = true; msg.textContent = 'Dhoond rahe hain aapko...';
+    if (!('geolocation' in navigator)) { say('Is device pe location available nahi. Directions button try karo!', "Location isn't available on this device. Try the Directions button!"); return; }
+    btn.disabled = true; say('Dhoond rahe hain aapko...', 'Finding you...');
     navigator.geolocation.getCurrentPosition(p => {
       btn.disabled = false;
       origin = { lat: +p.coords.latitude.toFixed(5), lng: +p.coords.longitude.toFixed(5) };
@@ -922,9 +952,8 @@ document.querySelectorAll('#order, .story2-order').forEach(a => {
       if (online) loadLive(); else drawOffline();
     }, err => {
       btn.disabled = false;
-      msg.textContent = err.code === 1
-        ? 'Location ki ijazat nahi mili. Koi baat nahi, Directions button se Google Maps khol lo.'
-        : 'Location nahi mil saki. Thori der mein dobara try karo.';
+      if (err.code === 1) say('Location ki ijazat nahi mili. Koi baat nahi, Directions button se Google Maps khol lo.', "We didn't get location permission. No worries, open Google Maps with the Directions button.");
+      else say('Location nahi mil saki. Thori der mein dobara try karo.', "Couldn't find your location. Try again in a bit.");
     }, { enableHighAccuracy: true, timeout: 12000, maximumAge: 60000 });
   });
 
@@ -938,10 +967,10 @@ document.querySelectorAll('#order, .story2-order').forEach(a => {
 <!-- ===== DESI INTERACTIONS ===== -->
 <div class="toast-wrap" id="toasts" aria-live="polite"></div>
 <button class="plate-pill" id="platePill" aria-controls="platePanel" aria-expanded="false">
-  MERI PLATE <span class="cnt" id="pillCnt">0</span> <span id="pillTot">$0.00</span>
+  <span class="pl-t">MERI PLATE<small>MY PLATE</small></span> <span class="cnt" id="pillCnt">0</span> <span id="pillTot">$0.00</span>
 </button>
-<div class="plate-panel" id="platePanel" role="dialog" aria-label="Meri Plate">
-  <div class="pp-head"><h3>MERI PLATE</h3><button class="pp-x" id="ppClose" aria-label="Close">&times;</button></div>
+<div class="plate-panel" id="platePanel" role="dialog" aria-label="Meri Plate (My plate)">
+  <div class="pp-head"><h3>MERI PLATE<small>(MY PLATE)</small></h3><button class="pp-x" id="ppClose" aria-label="Close">&times;</button></div>
   <ul class="pp-list" id="ppList"></ul>
   <div class="pp-foot">
     <div class="pp-line"><span>Subtotal</span><span id="ppSub">$0.00</span></div>
@@ -956,7 +985,7 @@ document.querySelectorAll('#order, .story2-order').forEach(a => {
     <path class="steam" d="M11 3c-1 1.5 1 2.5 0 4M16 3c-1 1.5 1 2.5 0 4M21 3c-1 1.5 1 2.5 0 4"/>
     <path d="M6 11h18v8a7 7 0 0 1-7 7h-4a7 7 0 0 1-7-7z"/><path d="M24 13h2a3 3 0 0 1 0 6h-2"/><path d="M5 29h21"/>
   </svg>
-  <span>UPAR CHALO</span>
+  <span>UPAR CHALO<small>BACK TO TOP</small></span>
 </button>
 <div class="ruko" id="callPop" role="dialog" aria-modal="true" aria-labelledby="callH">
   <div class="ruko-card">
@@ -970,11 +999,11 @@ document.querySelectorAll('#order, .story2-order').forEach(a => {
 </div>
 <div class="ruko" id="ruko" role="dialog" aria-modal="true" aria-labelledby="rukoH">
   <div class="ruko-card">
-    <h3 id="rukoH">ARRE RUKO!</h3>
-    <p>Khana kha k jana haan! Ammi ne specially kaha tha &mdash; bina khaye koi nahi jata.</p>
+    <h3 id="rukoH">ARRE RUKO!<span class="tr">Hey, wait!</span></h3>
+    <p>Khana kha k jana haan! Ammi ne specially kaha tha &mdash; bina khaye koi nahi jata.<span class="en">Do eat before you leave! Mom specially said so &mdash; nobody leaves without eating.</span></p>
     <div class="btns">
-      <a class="yes" href="#menu" id="rukoYes">THEEK HAI, MENU DIKHAO</a>
-      <button class="no" id="rukoNo">Bas dekh raha tha&hellip;</button>
+      <a class="yes" href="#menu" id="rukoYes">THEEK HAI, MENU DIKHAO<span class="tr">OK, show me the menu</span></a>
+      <button class="no" id="rukoNo">Bas dekh raha tha&hellip;<span class="tr" style="text-transform:none">Just looking&hellip;</span></button>
     </div>
   </div>
 </div>
@@ -1177,6 +1206,57 @@ document.querySelectorAll('#order, .story2-order').forEach(a => {
   const YC = window.YC;
   const el = (tag, cls, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
 
+  /* ---------- 10. Food icons on menu items ---------- */
+  const ICONS = [
+    [/combo/, '🍟'], [/upgrade/, '✨'], [/roll/, '🌯'], [/nachos/, '🧀'], [/chaat/, '🥗'], [/dahi puri/, '🥣'],
+    [/water/, '💧'], [/chai/, '☕'], [/mango|shezan/, '🥭'], [/pop|pakola|barbican/, '🥤'],
+    [/club/, '🥪'], [/grilled cheese/, '🧀'], [/quesadilla/, '🌮'], [/bun kabab/, '🍔'],
+    [/kulfi/, '🍦'], [/falooda/, '🍧'], [/dipping|sauce/, '🥫'], [/paratha/, '🥞'], [/skewer|boti/, '🍢'],
+    [/tender/, '🍗'], [/samosa/, '🥟'], [/box/, '📦'], [/fries|mayo|garlic|chipotle/, '🍟']
+  ];
+  const CAT_ICON = { 'PARATHA ROLLS': '🌯', 'SANDWICHES': '🥪', 'FRIES': '🍟', 'SHAREABLES': '🧀', 'BEVERAGES': '🥤', 'DESSERTS': '🍨', 'SIDES': '🍢', 'BOX': '📦' };
+  const iconFor = (name, cat) => { const n = (name || '').toLowerCase(); const hit = ICONS.find(([re]) => re.test(n)); return hit ? hit[1] : (CAT_ICON[cat] || '🍽️'); };
+  const cleanName = row => { const n = row.querySelector('.n').cloneNode(true); n.querySelectorAll('.note, em, .fx-stampbadge, .fx-steam').forEach(x => x.remove()); return n.textContent.replace(/\s+/g, ' ').trim(); };
+  $$('.menu .row').forEach(row => {
+    if (!row.querySelector('.p')) return;
+    const ico = el('span', 'ico'); ico.setAttribute('aria-hidden', 'true');
+    ico.textContent = iconFor(cleanName(row), row.closest('.cat')?.querySelector('h3')?.textContent.trim());
+    row.dataset.ico = ico.textContent; row.prepend(ico);
+  });
+  // pop in, one after another, when each section scrolls into view
+  if (!reduce && 'IntersectionObserver' in window) {
+    $$('.menu .cat').forEach(cat => {
+      const icos = [...cat.querySelectorAll('.row .ico')]; icos.forEach(i => i.classList.add('pre'));
+      const io = new IntersectionObserver(es => { if (!es[0].isIntersecting) return; io.disconnect();
+        icos.forEach((i, k) => setTimeout(() => i.classList.remove('pre'), 120 + k * 70)); }, { threshold: .15 });
+      io.observe(cat);
+    });
+  }
+  // tap/click: the icon takes a bite and bursts into little copies
+  const crumbs = (from, emoji) => {
+    if (reduce) return;
+    const r = from.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+    for (let k = 0; k < 6; k++) {
+      const c = el('span', 'fx-crumb'); c.textContent = emoji; document.body.appendChild(c);
+      const a = -Math.PI / 2 + (Math.random() - .5) * 2.2, d = 40 + Math.random() * 45;
+      c.animate([{ transform: `translate(${cx}px, ${cy}px) translate(-50%,-50%) scale(.4)`, opacity: 1 },
+                 { transform: `translate(${cx + Math.cos(a) * d}px, ${cy + Math.sin(a) * d}px) translate(-50%,-50%) scale(1) rotate(${Math.random() * 120 - 60}deg)`, opacity: 0 }],
+                { duration: 650 + Math.random() * 250, easing: 'cubic-bezier(.15,.8,.3,1)' }).onfinish = () => c.remove();
+    }
+  };
+  $$('.menu .row.addable').forEach(row => {
+    const ico = row.querySelector('.ico'); if (!ico) return;
+    const go = () => { ico.classList.remove('bite', 'pre'); void ico.offsetWidth; ico.classList.add('bite'); crumbs(ico, ico.textContent); };
+    row.addEventListener('click', go);
+    row.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') go(); });
+  });
+  // icons in the Meri Plate list
+  const icoByName = name => { const r = $$('.menu .row').find(x => x.querySelector('.n') && cleanName(x) === name); return r?.dataset.ico || iconFor(name); };
+  new MutationObserver(() => $$('#ppList li .nm').forEach(nm => {
+    if (nm.querySelector('.pp-ico')) return;
+    const s = el('span', 'pp-ico'); s.setAttribute('aria-hidden', 'true'); s.textContent = icoByName(nm.textContent.trim()); nm.prepend(s);
+  })).observe($('#ppList'), { childList: true });
+
   /* ---------- 1. Stamp-in hero ---------- */
   const wm = $('.wordmark'), tag = $('.tag'), hero = $('.hero');
   const dust = () => {
@@ -1199,8 +1279,8 @@ document.querySelectorAll('#order, .story2-order').forEach(a => {
   stamp();
 
   /* ---------- 2. Masala ticker ---------- */
-  const WORDS = ['PARATHA ROLLS', 'KARAK CHAI', 'NO NAAN-SENSE', 'MASALA FRIES', 'KHANA KHA K JANA HAAN!', 'BUN KABAB', 'CHAAT PAPDI', 'MILTON KA PAKISTANI ADDA'];
-  const half = WORDS.map(w => `<span>${w}</span><i>&#10022;</i>`).join('');
+  const WORDS = [['PARATHA ROLLS'], ['KARAK CHAI'], ['NO NAAN-SENSE'], ['MASALA FRIES'], ['KHANA KHA K JANA HAAN!', 'Do eat before leaving!'], ['BUN KABAB'], ['CHAAT PAPDI'], ['MILTON KA PAKISTANI ADDA', "Milton's Pakistani hangout"]];
+  const half = WORDS.map(([w, en]) => `<span>${w}${en ? ` <small class="fx-tk-en">(${en})</small>` : ''}</span><i>&#10022;</i>`).join('');
   const ticker = el('div', 'fx-ticker', `<div class="fx-track" aria-hidden="true">${half}${half}</div>`);
   ticker.setAttribute('role', 'presentation');
   hero.after(ticker);
@@ -1225,7 +1305,7 @@ document.querySelectorAll('#order, .story2-order').forEach(a => {
     });
   };
   $$('.menu .row.addable').forEach(row => {
-    const go = () => flyFrom(row.querySelector('.p').getBoundingClientRect(), '+$' + row.querySelector('.p').textContent.trim());
+    const go = () => flyFrom(row.querySelector('.p').getBoundingClientRect(), (row.dataset.ico ? row.dataset.ico + ' ' : '') + '+$' + row.querySelector('.p').textContent.trim());
     row.addEventListener('click', go);
     row.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') go(); });
   });
@@ -1253,7 +1333,7 @@ document.querySelectorAll('#order, .story2-order').forEach(a => {
   const chips = el('nav', 'fx-chips'); chips.setAttribute('aria-label', 'Menu sections');
   cats.forEach((c, i) => {
     const name = c.querySelector('h3').textContent.trim(); c.id = c.id || 'cat-' + i;
-    const b = el('button'); b.type = 'button'; b.textContent = short[name] || name; b.dataset.target = c.id;
+    const b = el('button'); b.type = 'button'; b.innerHTML = `<span class="ci" aria-hidden="true">${CAT_ICON[name] || ''}</span>`; b.append(short[name] || name); b.dataset.target = c.id;
     b.onclick = () => {
       // layout position (offsetTop ignores the scroll-in fade's temporary 24px shift)
       let y = 0; for (let e = c; e; e = e.offsetParent) y += e.offsetTop;
@@ -1287,25 +1367,25 @@ document.querySelectorAll('#order, .story2-order').forEach(a => {
   const rowsOf = (catNames, skip = []) => $$('.menu .cat').filter(c => catNames.includes(c.querySelector('h3').textContent.trim()))
     .flatMap(c => [...c.querySelectorAll('.row')]).map(r => {
       const n = r.querySelector('.n').cloneNode(true); n.querySelectorAll('.note, em, .fx-stampbadge, .fx-steam').forEach(x => x.remove());
-      return { name: n.textContent.replace(/\s+/g, ' ').trim(), price: parseFloat(r.querySelector('.p').textContent), cat: r.closest('.cat').querySelector('h3').textContent.trim() };
+      return { name: n.textContent.replace(/\s+/g, ' ').trim(), price: parseFloat(r.querySelector('.p').textContent), cat: r.closest('.cat').querySelector('h3').textContent.trim(), ico: r.dataset.ico || '' };
     }).filter(x => !isNaN(x.price) && !skip.some(s => x.name.toLowerCase().includes(s)));
   const POOLS = [
     { lab: 'MAIN', items: rowsOf(['PARATHA ROLLS', 'SANDWICHES'], ['combo', 'upgrade']) },
     { lab: 'SIDE', items: rowsOf(['FRIES', 'SHAREABLES', 'SIDES'], ['dipping', 'plain paratha']) },
     { lab: 'DRINK', items: rowsOf(['BEVERAGES'], ['water', '3 pack']) }
   ];
-  const kkBtn = el('button', 'fx-kk-btn', '<span class="dice">&#127922;</span> KYA KHAOON? <span style="font-size:.6em;opacity:.7">(SPIN IT)</span>');
+  const kkBtn = el('button', 'fx-kk-btn', '<span class="dice">&#127922;</span><span class="kkb"><span class="kkb-t">KYA KHAOON?</span><span class="tr">What should I eat? Spin it!</span></span>');
   kkBtn.type = 'button';
   $('.menu > h2').after(kkBtn);
   const kk = el('div', 'fx-kk', `<div class="fx-kk-card" role="dialog" aria-modal="true" aria-label="Kya Khaoon">
-      <h3>KYA KHAOON?</h3><p class="sub">Can't decide? Let the reels pick a main, a side and a drink.</p>
+      <h3>KYA KHAOON?<span class="tr" style="color:var(--white)">What should I eat?</span></h3><p class="sub">Can't decide? Let the reels pick a main, a side and a drink.</p>
       <div class="fx-reels">${POOLS.map(p => `<div class="fx-reel"><span class="lab">${p.lab}</span><div class="fx-window"><div class="fx-strip"></div></div></div>`).join('')}</div>
       <div class="fx-kk-total" aria-live="polite"></div>
       <div class="fx-kk-acts"><button class="again" type="button">SPIN AGAIN</button><button class="go" type="button">ADD ALL TO PLATE</button></div>
       <button class="fx-kk-x" type="button">Nahi, khud dekhta hoon (I'll pick myself)</button></div>`);
   document.body.appendChild(kk);
   let picks = [];
-  const card = (it, h) => `<div style="height:${h}px">${it.name}<b>$${it.price.toFixed(2)}</b></div>`;
+  const card = (it, h) => `<div style="height:${h}px"><span class="ki" aria-hidden="true">${it.ico || ''}</span><span class="kn">${it.name}</span><b>$${it.price.toFixed(2)}</b></div>`;
   let spinId = 0;
   const spin = () => {
     const id = ++spinId;
@@ -1358,7 +1438,7 @@ document.querySelectorAll('#order, .story2-order').forEach(a => {
     const wrap = el('div', 'fx-boxwrap'); boxImg.before(wrap); wrap.appendChild(boxImg);
     const SPOTS = [
       { x: 24, y: 46, t: '1 Chicken Club Sandwich', s: 'Toasted, triple-decker' },
-      { x: 44, y: 60, t: '1 Chicken Tikka "Kaisa Diya"', s: 'Our quesadilla, desi style' },
+      { x: 44, y: 60, t: '1 Chicken Tikka "Kaisa Diya"', s: '"Kaisa diya?" = "How did we serve it?" Our desi quesadilla' },
       { x: 62, y: 54, t: '2 Chicken Rolls', s: 'Malai Special + Tikka Chutney' },
       { x: 84, y: 31, t: '4 Drinks', s: 'Ice-cold cans' },
       { x: 29, y: 78, t: 'Large Masala Fries', s: 'With dips on the side' }
@@ -1379,7 +1459,7 @@ document.querySelectorAll('#order, .story2-order').forEach(a => {
     document.addEventListener('click', closeTip);
     const bb = el('button', 'fx-boxbtn', 'ADD THE OYE HOYE BOX <b>&middot; $55.99</b>'); bb.type = 'button';
     bb.onclick = () => {
-      YC.add('Oye Hoye Box', 55.99, 'BOX'); flyFrom(bb.getBoundingClientRect(), '+$55.99');
+      YC.add('Oye Hoye Box', 55.99, 'BOX'); flyFrom(bb.getBoundingClientRect(), '📦 +$55.99');
       YC.toast(['Oye hoye! Poori family ka scene set.', "Oh wow! The whole family's sorted."]);
     };
     box.appendChild(bb);
@@ -1402,9 +1482,9 @@ document.querySelectorAll('#order, .story2-order').forEach(a => {
     let sub = 0; const lines = [];
     YC.plate.forEach((it, name) => { const c = it.qty * Math.round(it.price * 100); sub += c; lines.push(`${it.qty} x ${name} - $${(c / 100).toFixed(2)}`); });
     const tax = YC.taxCents(sub);
-    const text = `Meri Plate @ Yeh Cheez! Milton\n\n${lines.join('\n')}\n\nSubtotal $${(sub / 100).toFixed(2)}\nHST (13%) $${(tax / 100).toFixed(2)}\nTOTAL $${((sub + tax) / 100).toFixed(2)}\n\nKhana kha k jana haan!`;
+    const text = `Meri Plate (My Plate) @ Yeh Cheez! Milton\n\n${lines.join('\n')}\n\nSubtotal $${(sub / 100).toFixed(2)}\nHST (13%) $${(tax / 100).toFixed(2)}\nTOTAL $${((sub + tax) / 100).toFixed(2)}\n\nKhana kha k jana haan! (Do eat before leaving!)`;
     try {
-      if (navigator.share) { await navigator.share({ title: 'Meri Plate @ Yeh Cheez!', text, url: location.href.split('#')[0] }); }
+      if (navigator.share) { await navigator.share({ title: 'Meri Plate (My Plate) @ Yeh Cheez!', text, url: location.href.split('#')[0] }); }
       else { await navigator.clipboard.writeText(text); YC.toast(['Plate copy ho gayi!', 'Your plate is copied. Paste it anywhere.']); }
     } catch (e) { /* user cancelled share */ }
   };
