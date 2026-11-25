@@ -381,8 +381,27 @@ body.plate-open .chai-top{opacity:0;pointer-events:none}
 .row .ico.pre{transform:scale(0) rotate(-30deg);opacity:0}
 .row.addable:hover .ico,.row.addable:focus-visible .ico{animation:icoWiggle .6s ease}
 @keyframes icoWiggle{20%{transform:rotate(-14deg) scale(1.15)}40%{transform:rotate(12deg) scale(1.15)}60%{transform:rotate(-8deg)}80%{transform:rotate(5deg)}}
-.row .ico.bite{animation:icoBite .45s ease}
+/* always-on idle animations, one style per kind of food (out of step with each other) */
+.row .ico.live.a-float{animation:icoFloat 3.2s ease-in-out infinite}
+.row .ico.live.a-rock{animation:icoRock 2.6s ease-in-out infinite}
+.row .ico.live.a-jiggle{animation:icoJiggle 2.4s ease-in-out infinite}
+.row .ico.live.a-sip{animation:icoSip 3.4s ease-in-out infinite}
+.row .ico.live.a-bob{animation:icoBob 2.2s ease-in-out infinite}
+.row .ico.live.a-squish{animation:icoSquish 2.8s ease-in-out infinite}
+.row .ico.live.a-twinkle{animation:icoTwinkle 1.8s ease-in-out infinite}
+@keyframes icoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px) rotate(-4deg)}}
+@keyframes icoRock{0%,100%{transform:rotate(-9deg)}50%{transform:rotate(9deg)}}
+@keyframes icoJiggle{0%,58%,100%{transform:none}64%{transform:rotate(-11deg) scale(1.1)}74%{transform:rotate(10deg) scale(1.1)}84%{transform:rotate(-5deg)}}
+@keyframes icoSip{0%,52%,100%{transform:rotate(0)}66%,80%{transform:rotate(-24deg) translateY(-2px)}}
+@keyframes icoBob{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-3px) scale(1.07)}}
+@keyframes icoSquish{0%,100%{transform:scale(1,1)}40%{transform:scale(1.14,.86)}58%{transform:scale(.93,1.08)}}
+@keyframes icoTwinkle{0%,100%{transform:scale(1) rotate(0);opacity:1}50%{transform:scale(.72) rotate(28deg);opacity:.55}}
+/* hover wiggle and tap bite take over from the idle animation */
+.row.addable:hover .ico.live,.row.addable:focus-visible .ico.live{animation:icoWiggle .6s ease}
+.row .ico.bite,.row .ico.live.bite{animation:icoBite .45s ease}
 @keyframes icoBite{30%{transform:scale(1.45) rotate(-10deg)}55%{transform:scale(.85)}100%{transform:scale(1)}}
+.fx-chips button .ci{display:inline-block}
+.fx-chips button.on .ci{animation:icoBob 1.6s ease-in-out infinite}
 .fx-crumb{position:fixed;z-index:81;pointer-events:none;font-size:1.1rem;line-height:1}
 .pp-list .nm .pp-ico{margin-right:6px}
 .fx-chips button .ci{margin-right:4px;font-size:.95em}
@@ -1376,20 +1395,27 @@ document.querySelectorAll('#order, .story2-order').forEach(a => {
   const CAT_ICON = { 'PARATHA ROLLS': '🌯', 'SANDWICHES': '🥪', 'FRIES': '🍟', 'SHAREABLES': '🧀', 'BEVERAGES': '🥤', 'DESSERTS': '🍨', 'SIDES': '🍢', 'BOX': '📦' };
   const iconFor = (name, cat) => { const n = (name || '').toLowerCase(); const hit = ICONS.find(([re]) => re.test(n)); return hit ? hit[1] : (CAT_ICON[cat] || '🍽️'); };
   const cleanName = row => { const n = row.querySelector('.n').cloneNode(true); n.querySelectorAll('.note, em, .fx-stampbadge, .fx-steam').forEach(x => x.remove()); return n.textContent.replace(/\s+/g, ' ').trim(); };
+  // idle animation per kind of food
+  const animFor = e => ({ '🌯': 'rock', '🍟': 'jiggle', '🥤': 'sip', '💧': 'sip', '🥭': 'sip', '☕': 'bob', '🍦': 'squish', '🍧': 'squish', '🍨': 'squish', '✨': 'twinkle' })[e] || 'float';
   $$('.menu .row').forEach(row => {
     if (!row.querySelector('.p')) return;
     const ico = el('span', 'ico'); ico.setAttribute('aria-hidden', 'true');
     ico.textContent = iconFor(cleanName(row), row.closest('.cat')?.querySelector('h3')?.textContent.trim());
     row.dataset.ico = ico.textContent; row.prepend(ico);
+    ico.classList.add('a-' + animFor(ico.textContent));
+    ico.style.animationDelay = (-Math.random() * 3).toFixed(2) + 's';   // out of step with each other
   });
+  const goLive = i => setTimeout(() => i.classList.add('live'), 480);
   // pop in, one after another, when each section scrolls into view
   if (!reduce && 'IntersectionObserver' in window) {
     $$('.menu .cat').forEach(cat => {
       const icos = [...cat.querySelectorAll('.row .ico')]; icos.forEach(i => i.classList.add('pre'));
       const io = new IntersectionObserver(es => { if (!es[0].isIntersecting) return; io.disconnect();
-        icos.forEach((i, k) => setTimeout(() => i.classList.remove('pre'), 120 + k * 70)); }, { threshold: .15 });
+        icos.forEach((i, k) => setTimeout(() => { i.classList.remove('pre'); goLive(i); }, 120 + k * 70)); }, { threshold: .15 });
       io.observe(cat);
     });
+  } else if (!reduce) {
+    $$('.menu .row .ico').forEach(i => i.classList.add('live'));
   }
   // tap/click: the icon takes a bite and bursts into little copies
   const crumbs = (from, emoji) => {
