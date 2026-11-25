@@ -1598,7 +1598,7 @@ document.querySelectorAll('#order, .story2-order').forEach(a => {
     const SPOTS = [
       { x: 24, y: 46, t: '1 Chicken Club Sandwich', s: 'Toasted, triple-decker' },
       { x: 44, y: 60, t: '1 Chicken Tikka "Kaisa Diya"', s: '"Kaisa diya?" = "How did we serve it?" Our desi quesadilla' },
-      { x: 62, y: 54, t: '2 Chicken Rolls', s: 'Malai Special + Tikka Chutney' },
+      { x: 62, y: 54, t: '2 Chicken Rolls', s: 'Malai Special + Tikka Chutney (or whatever you like)' },
       { x: 84, y: 31, t: '4 Drinks', s: 'Ice-cold cans' },
       { x: 29, y: 78, t: 'Large Masala Fries', s: 'With dips on the side' }
     ];
@@ -1612,6 +1612,11 @@ document.querySelectorAll('#order, .story2-order').forEach(a => {
         tip = el('div', 'fx-tip'); tip.innerHTML = `${sp.t}<small>${sp.s}</small>`;
         tip.style.left = Math.min(80, Math.max(20, sp.x)) + '%'; tip.style.top = sp.y + '%';
         wrap.appendChild(tip); d.classList.add('open'); openDot = d;
+        // keep the bubble on screen on narrow phones (offsetWidth isn't affected by the pop-in animation)
+        const pad = 8, wr = wrap.getBoundingClientRect(), half = tip.offsetWidth / 2;
+        let cx = wrap.clientWidth * Math.min(80, Math.max(20, sp.x)) / 100;
+        cx = Math.max(pad - wr.left + half, Math.min(innerWidth - pad - wr.left - half, cx));
+        tip.style.left = cx + 'px';
       };
       wrap.appendChild(d);
     });
