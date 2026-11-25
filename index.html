@@ -475,6 +475,90 @@ body.plate-open .chai-top{opacity:0;pointer-events:none}
 /* ---- 9. Chai rain ---- */
 .fx-cup{position:fixed;top:-60px;z-index:95;pointer-events:none;color:var(--orange)}
 .fx-cup svg{width:100%;height:100%}
+/* ================= JOBS (Looking for a job?) ================= */
+.jobs{background:var(--black);border-top:var(--rule) solid var(--white);padding:clamp(56px,8vw,90px) clamp(16px,5vw,40px) clamp(64px,9vw,100px)}
+.jobs-head{text-align:center;max-width:980px;margin:0 auto clamp(28px,4vw,44px)}
+.jobs h2{font-family:var(--cond);font-weight:400;color:var(--orange);font-size:clamp(3.4rem,10vw,6.6rem);line-height:1;text-wrap:balance}
+.jobs h2 .tr{color:var(--white);font-size:.24em;margin-top:6px}
+.jobs-lead{max-width:720px;margin-left:auto;margin-right:auto;color:#d6d6d6;font-weight:700;font-size:clamp(1rem,2.2vw,1.2rem);line-height:1.4;margin-top:14px}
+.jobs-lead b{color:var(--orange)}
+.jobs-lead i{font-weight:600}
+
+/* order ticket */
+.ticket{position:relative;max-width:640px;margin:0 auto;background:#fffdf6;color:var(--ink);border-radius:6px 6px 0 0;box-shadow:0 18px 40px rgba(0,0,0,.55);transform:rotate(-.6deg);
+  -webkit-mask:linear-gradient(#000 0 0) top/100% calc(100% - 14px) no-repeat, conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom/22px 14px repeat-x;
+          mask:linear-gradient(#000 0 0) top/100% calc(100% - 14px) no-repeat, conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom/22px 14px repeat-x;
+  padding-bottom:14px;transition:transform .3s}
+.ticket:focus-within{transform:rotate(0)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.tk-top{padding:18px 22px 14px;border-bottom:2px dashed #c9c2b0}
+.tk-top > div:first-child{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-family:var(--body);font-weight:800;font-size:.75rem;letter-spacing:.12em;color:#6b6457}
+.tk-no b{color:var(--ink)}
+.tk-order{font-family:var(--cond);font-size:clamp(2rem,6vw,2.8rem);line-height:1;margin-top:8px;display:flex;align-items:center;gap:10px}
+.tk-order span{color:var(--orange)}
+.tk-order em{font-style:normal;font-size:.8em;display:inline-block;animation:tkBob 2.4s ease-in-out infinite}
+@keyframes tkBob{50%{transform:translateY(-4px) rotate(-8deg)}}
+.tk-body{padding:18px 22px 6px;display:grid;gap:16px}
+.tk-row.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.fld{display:block;border:0;min-width:0}
+.lb{display:block;font-family:var(--cond);font-size:1.25rem;letter-spacing:.02em;margin-bottom:6px;color:var(--ink)}
+.lb i{font-family:var(--body);font-style:normal;font-weight:700;font-size:.62em;letter-spacing:.02em;color:#6b6457;text-transform:none}
+.fld input:not([type=checkbox]):not([type=radio]):not([type=file]),.fld select,.fld textarea{width:100%;font:600 1rem var(--body);color:var(--ink);background:#fff;border:2px solid #d9d2c0;border-radius:10px;padding:11px 12px;outline:none;transition:border-color .15s,box-shadow .15s}
+.fld textarea{resize:vertical;min-height:96px}
+.fld input:focus,.fld select:focus,.fld textarea:focus{border-color:var(--orange);box-shadow:0 0 0 4px rgba(245,134,18,.18)}
+.fld.bad input,.fld.bad .chips{animation:tkShake .35s}
+.fld.bad input,.fld.bad select{border-color:#c0392b}
+@keyframes tkShake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+
+/* chips */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:2px}
+.chips + .chips{margin-top:8px}
+.chips.stack{flex-direction:column;align-items:stretch}
+.chips label{position:relative;cursor:pointer}
+.chips input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.chips span{display:inline-flex;align-items:center;gap:6px;width:100%;font:800 .9rem var(--body);padding:9px 13px;border-radius:999px;border:2px solid #d9d2c0;background:#fff;transition:background .15s,border-color .15s,transform .2s cubic-bezier(.2,1.8,.4,1)}
+.chips span i{font-style:normal;font-weight:600;color:#6b6457}
+.chips.days span{justify-content:center;min-width:52px;font-family:var(--cond);font-weight:400;font-size:1.1rem;letter-spacing:.04em;padding:7px 10px 5px}
+.chips input:checked + span{background:var(--orange);border-color:var(--ink);transform:scale(1.04) rotate(-1deg)}
+.chips input:checked + span i{color:var(--ink)}
+.chips input:focus-visible + span{box-shadow:0 0 0 4px rgba(245,134,18,.35)}
+
+/* file */
+.fld.file{position:relative}
+.fld.file input{position:absolute;opacity:0;width:100%;height:100%;inset:0;cursor:pointer}
+.file-ui{display:flex;align-items:center;gap:12px;border:2px dashed #c9c2b0;border-radius:10px;padding:12px;font:600 .9rem var(--body);color:#6b6457;background:#fff}
+.file-ui b{color:var(--ink);white-space:nowrap}
+.fld.file input:focus-visible + .file-ui{border-color:var(--orange)}
+.fld.file.has .file-ui{border-style:solid;border-color:var(--orange);color:var(--ink)}
+
+.consent{display:flex;gap:10px;align-items:flex-start;font:700 .88rem var(--body);line-height:1.35;cursor:pointer}
+.consent input{width:20px;height:20px;accent-color:var(--orange);flex:none;margin-top:1px}
+.tk-err{min-height:1.2em;color:#c0392b;font:800 .9rem var(--body)}
+
+.tk-foot{padding:4px 22px 22px;text-align:center}
+.tk-send{width:100%;font-family:var(--cond);font-size:clamp(1.8rem,5vw,2.3rem);line-height:1;background:var(--ink);color:var(--orange);border:0;border-radius:14px;padding:14px 16px 10px;cursor:pointer;box-shadow:0 6px 0 #000;transition:transform .12s,box-shadow .12s}
+.tk-send .tr{color:var(--white);font-size:.4em;margin-top:4px}
+.tk-send:hover{transform:translateY(-2px)}
+.tk-send:active{transform:translateY(4px);box-shadow:0 2px 0 #000}
+.tk-send[disabled]{opacity:.6;cursor:wait}
+.tk-note{font:700 .75rem var(--body);color:#6b6457;margin-top:10px}
+
+/* send animation: the ticket rolls up like a paratha and flies off */
+.ticket.sending{animation:tkRoll .9s cubic-bezier(.5,0,.75,0) forwards;pointer-events:none}
+@keyframes tkRoll{30%{transform:rotate(-2deg) scaleY(.6)}60%{transform:rotate(-8deg) scale(.4,.12)}100%{transform:translate(40vw,-30vh) rotate(-25deg) scale(.1,.05);opacity:0}}
+
+/* thank-you card */
+.tk-done{max-width:560px;margin:0 auto;text-align:center;background:var(--orange);color:var(--ink);border:4px solid var(--ink);border-radius:18px;padding:30px 22px;box-shadow:10px 10px 0 #000;animation:tin .35s ease}
+.tk-done .done-ico{font-size:3.2rem;animation:tkBob 2s ease-in-out infinite}
+.tk-done h3{font-family:var(--cond);font-weight:400;font-size:clamp(3rem,10vw,4.2rem);line-height:1;margin-top:6px}
+.tk-done h3 .tr{font-size:.3em}
+.tk-done p{font-weight:800;margin-top:12px;line-height:1.4}
+.tk-done .en{display:block;font-weight:600;font-style:italic;margin-top:6px}
+
+@media (max-width:560px){
+  .tk-row.two{grid-template-columns:1fr}
+  .tk-top,.tk-body,.tk-foot{padding-left:16px;padding-right:16px}
+}
 </style>
 </head>
 <body>
@@ -516,6 +600,7 @@ body.plate-open .chai-top{opacity:0;pointer-events:none}
     </li>
     <li><a class="ov-big distress" href="#find" data-close>FIND US</a></li>
     <li><a class="ov-big distress" href="#follow" data-close>SOCIALS</a></li>
+    <li><a class="ov-big distress" href="#jobs" data-close>JOBS</a></li>
   </ul>
 </div>
 
@@ -711,6 +796,80 @@ body.plate-open .chai-top{opacity:0;pointer-events:none}
       <a id="ig" target="_blank" rel="noopener" aria-label="Instagram">
         <svg viewBox="0 0 64 64" fill="none" stroke="#000" stroke-width="5.5"><rect x="5" y="5" width="54" height="54" rx="15"/><circle cx="32" cy="32" r="12.5"/><circle cx="47.5" cy="16.5" r="2" fill="#000" stroke="none"/></svg>
       </a>
+    </div>
+  </section>
+
+  <!-- JOBS -->
+  <section class="jobs" id="jobs">
+    <div class="jobs-head">
+      <h2>LOOKING FOR A JOB?</h2>
+      <p class="jobs-lead">Join the Yeh Cheez! <b>khandaan</b> <i>(family)</i>. Fill out the order ticket below and the kitchen will get it.</p>
+    </div>
+
+    <form class="ticket" id="jobForm" action="https://formsubmit.co/gtafoodjobs@gmail.com" method="POST" enctype="multipart/form-data" novalidate>
+      <!-- FormSubmit settings -->
+      <input type="hidden" name="_subject" value="New job application: Yeh Cheez! Milton">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_next" id="jobNext" value="https://yehcheez.ca/?applied=1#jobs">
+      <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+      <div class="tk-top">
+        <div>
+          <span class="tk-brand">YEH CHEEZ! KITCHEN</span>
+          <span class="tk-no">ORDER #<b id="tkNo">0000</b></span>
+        </div>
+        <div class="tk-order"><span>1&times;</span> NEW TEAM MEMBER <em aria-hidden="true">&#127791;</em></div>
+      </div>
+
+      <div class="tk-body">
+        <div class="tk-row two">
+          <label class="fld"><span class="lb">NAAM <i>(Name)</i> *</span>
+            <input name="Name" required autocomplete="name" placeholder="Full name"></label>
+          <label class="fld"><span class="lb">PHONE *</span>
+            <input name="Phone" type="tel" required autocomplete="tel" placeholder="(905) 555-0123"></label>
+        </div>
+        <label class="fld"><span class="lb">EMAIL *</span>
+          <input name="email" type="email" required autocomplete="email" placeholder="you@example.com"></label>
+
+        <fieldset class="fld">
+          <legend class="lb">KAB FREE HO? <i>(When are you available?)</i> *</legend>
+          <div class="chips days" data-group="days">
+            <label><input type="checkbox" name="Days" value="Tue"><span>TUE</span></label>
+            <label><input type="checkbox" name="Days" value="Wed"><span>WED</span></label>
+            <label><input type="checkbox" name="Days" value="Thu"><span>THU</span></label>
+            <label><input type="checkbox" name="Days" value="Fri"><span>FRI</span></label>
+            <label><input type="checkbox" name="Days" value="Sat"><span>SAT</span></label>
+            <label><input type="checkbox" name="Days" value="Sun"><span>SUN</span></label>
+          </div>
+          <div class="chips">
+            <label><input type="checkbox" name="Shifts" value="Evenings (4pm to 10pm)"><span>&#127769; Evenings <i>(4pm to 10pm)</i></span></label>
+            <label><input type="checkbox" name="Shifts" value="Late nights (6pm to Midnight)"><span>&#129417; Late nights <i>(6pm to Midnight)</i></span></label>
+          </div>
+        </fieldset>
+
+        <label class="fld"><span class="lb">AUR KUCH APNAY BAARE MAIN? <i>(Anything else about yourself?)</i></span>
+          <textarea name="About" rows="4" maxlength="1500" placeholder="A few lines about you, past jobs, and why Yeh Cheez!"></textarea></label>
+
+        <label class="fld file"><span class="lb">RESUME <i>(optional: PDF, Word or photo, max 5 MB)</i></span>
+          <input type="file" name="attachment" id="jobFile" accept=".pdf,.doc,.docx,image/*">
+          <span class="file-ui"><b>&#128206; Attach resume</b><span id="fileName">No file chosen</span></span></label>
+
+        <label class="consent"><input type="checkbox" name="Consent" value="Yes" required>
+          <span>I agree that Yeh Cheez! can contact me about this application. *</span></label>
+
+        <p class="tk-err" id="jobErr" role="alert"></p>
+      </div>
+
+      <div class="tk-foot">
+        <button type="submit" class="tk-send" id="jobSend">ROLL IT IN! <span class="tr">Send my application</span></button>
+        <p class="tk-note">Sent by email to the Yeh Cheez! hiring team.</p>
+      </div>
+    </form>
+
+    <div class="tk-done" id="jobDone" hidden>
+      <div class="done-ico" aria-hidden="true">&#127791;</div>
+      <h3>SHUKRIYA!<span class="tr">Thank you!</span></h3>
+      <p>Application mil gayi. Agar match hua toh hum rabta karenge.<span class="en">We got your application. If it's a match, we'll be in touch.</span></p>
     </div>
   </section>
 
@@ -1509,6 +1668,69 @@ document.querySelectorAll('#order, .story2-order').forEach(a => {
   addEventListener('keydown', e => { if (e.key.length !== 1) return; typed = (typed + e.key.toLowerCase()).slice(-4); if (typed === 'chai') chaiRain(); });
   let taps = [];
   wm.addEventListener('click', () => { const t = Date.now(); taps = taps.filter(x => t - x < 1500).concat(t); if (taps.length >= 5) { taps = []; chaiRain(); } });
+})();
+</script>
+<script>
+/* ===== JOBS: Looking for a job? application ticket (sent via FormSubmit to gtafoodjobs@gmail.com) ===== */
+(() => {
+  const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+  const form = $('#jobForm'); if (!form) return;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const err = $('#jobErr'), send = $('#jobSend'), done = $('#jobDone');
+
+  // ticket number, just for fun
+  $('#tkNo').textContent = String(Math.floor(1000 + Math.random() * 9000));
+
+  // after sending, FormSubmit brings the applicant back here with ?applied=1
+  const here = location.href.split('#')[0].split('?')[0];
+  if (/^https?:/.test(here)) $('#jobNext').value = here + '?applied=1#jobs';
+  if (new URLSearchParams(location.search).get('applied') === '1') {
+    form.hidden = true; done.hidden = false;
+    setTimeout(() => $('#jobs').scrollIntoView({ block: 'start' }), 300);
+  }
+
+  // file name + size check
+  const file = $('#jobFile'), fileName = $('#fileName'), MAX = 5 * 1024 * 1024;
+  file.addEventListener('change', () => {
+    const f = file.files[0];
+    file.closest('.fld').classList.toggle('has', !!f);
+    fileName.textContent = f ? `${f.name} (${(f.size / 1024 / 1024).toFixed(1)} MB)` : 'No file chosen';
+  });
+
+  // validation with friendly messages
+  const flag = (el, msg) => {
+    const f = el.closest('.fld') || el.closest('.consent');
+    if (f) { f.classList.remove('bad'); void f.offsetWidth; f.classList.add('bad'); }
+    err.textContent = msg; (el.focus && el.focus({ preventScroll: true })); f?.scrollIntoView({ block: 'center', behavior: reduce ? 'auto' : 'smooth' });
+    return false;
+  };
+  const checkGroup = name => form.querySelectorAll(`[name="${name}"]:checked`).length > 0;
+  const validate = () => {
+    $$('.ticket .bad').forEach(x => x.classList.remove('bad')); err.textContent = '';
+    const v = n => form.elements[n];
+    if (!v('Name').value.trim()) return flag(v('Name'), 'Naam toh batao! (Please add your name.)');
+    if (v('Phone').value.replace(/\D/g, '').length < 10) return flag(v('Phone'), 'Phone number check karo. (Please enter a 10-digit phone number.)');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v('email').value.trim())) return flag(v('email'), 'Email sahi nahi lag raha. (Please enter a valid email.)');
+    if (!checkGroup('Days')) return flag(form.querySelector('[name="Days"]'), 'Kis din free ho? (Please pick at least one day.)');
+    const f = file.files[0];
+    if (f && f.size > MAX) return flag(file, 'Resume 5 MB se chhota hona chahiye. (Resume must be under 5 MB.)');
+    if (!form.elements['Consent'].checked) return flag(form.elements['Consent'], 'Consent box tick karo. (Please tick the consent box.)');
+    return true;
+  };
+
+  // clear the message once they fix things
+  form.addEventListener('change', () => { err.textContent = ''; $$('.ticket .bad').forEach(x => x.classList.remove('bad')); });
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    if (!validate()) return;
+    send.disabled = true; send.firstChild.textContent = 'ROLLING... ';
+    if (reduce) return form.submit();
+    form.classList.add('sending');
+    setTimeout(() => form.submit(), 850);
+  });
+  // coming back with the browser's back button: restore the ticket
+  addEventListener('pageshow', () => { form.classList.remove('sending'); send.disabled = false; send.firstChild.textContent = 'ROLL IT IN! '; });
 })();
 </script>
 </body>
