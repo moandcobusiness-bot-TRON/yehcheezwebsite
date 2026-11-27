@@ -578,6 +578,84 @@ body.plate-open .chai-top{opacity:0;pointer-events:none}
   .tk-row.two{grid-template-columns:1fr}
   .tk-top,.tk-body,.tk-foot{padding-left:16px;padding-right:16px}
 }
+/* ================= HOVER SYSTEM =================
+   One language for every control:
+   - action buttons lift with a deeper shadow; secondary buttons warm up; icon buttons spin or tilt;
+     chips tint orange; links underline or flip colours; form fields warm their border.
+   Hover only on devices that can hover (no sticky hover after a tap on phones).
+   Keyboard focus gets the same look; touch gets a quick press-in. */
+.burger span,.chai-top svg,.pp-x,.pp-list button,.pp-actions a,.pp-actions button,.fx-kk-acts button,.fx-kk-x,
+.ruko-card a,.ruko-card button,.socials svg,.logo img,.phone,.ov-close,.fx-chips button,.story2-order,.wordmark,
+.fld input,.fld select,.fld textarea,.file-ui,.consent input,.chips span,.plate-pill,.fx-hot{transition:transform .2s cubic-bezier(.2,1.6,.4,1),background-color .18s,color .18s,border-color .18s,box-shadow .2s,filter .2s,text-decoration-color .18s}
+.wordmark{transition:transform .35s cubic-bezier(.2,1.6,.4,1),filter .3s}
+
+@media (hover:hover){
+  /* header */
+  .logo:hover img{transform:rotate(-4deg) scale(1.06)}
+  .burger:hover span{background:var(--white)}
+  .burger:hover span:first-child{transform:translateX(-8px)}
+  .wordmark:hover{transform:rotate(-9deg) scale(1.04);filter:drop-shadow(0 6px 0 rgba(245,134,18,.25))}
+  .ov-close:hover{transform:rotate(90deg) scale(1.08)}
+  .ov-close:hover::before,.ov-close:hover::after{background:var(--white)}
+
+  /* story + box */
+  .story2-order:hover{background:var(--ink);color:var(--orange);text-decoration:none;border-radius:4px;padding:0 3px;margin:0 -3px}
+  .fx-hot:hover{transform:scale(1.2);background:var(--orange)}
+
+  /* menu jump chips */
+  .fx-chips button:not(.on):hover{background:rgba(245,134,18,.18);color:var(--white);transform:translateY(-2px)}
+  .fx-chips button.on:hover{transform:translateY(-2px);box-shadow:0 4px 0 #000}
+
+  /* find us + socials */
+  .phone:hover{background:var(--ink);color:var(--orange);border-radius:50%;transform:rotate(-14deg) scale(1.08)}
+  .socials a:hover svg{transform:translateY(-5px) rotate(-8deg);filter:drop-shadow(4px 5px 0 rgba(0,0,0,.35))}
+
+  /* floating buttons */
+  .chai-top.show:hover{background:var(--orange);color:var(--ink);transform:translateY(-4px)}
+  .chai-top.show:hover svg{transform:rotate(-12deg)}
+  .plate-pill:hover{transform:translateY(-3px) rotate(-1.5deg);box-shadow:0 12px 26px rgba(0,0,0,.6)}
+
+  /* Meri Plate panel */
+  .pp-x:hover{transform:rotate(90deg) scale(1.15)}
+  .pp-list button:hover{background:var(--orange);color:var(--ink);transform:scale(1.12)}
+  .pp-call:hover{background:var(--white);transform:translateY(-2px);box-shadow:0 5px 0 #000}
+  .pp-share:hover{background:var(--orange);transform:translateY(-2px);box-shadow:0 5px 0 #000}
+  .pp-clear:hover{background:#3a3a3a;color:var(--orange);transform:translateY(-2px)}
+
+  /* Kya Khaoon? spinner */
+  .fx-kk-acts .go:not([disabled]):hover{background:var(--white);transform:translateY(-2px);box-shadow:0 5px 0 var(--orange)}
+  .fx-kk-acts .again:hover{background:#3a3a3a;color:var(--orange);transform:translateY(-2px)}
+  .fx-kk-x:hover{color:var(--white);text-decoration-color:var(--orange)}
+
+  /* pop-ups (call us, arre ruko) */
+  .ruko-card .yes:hover{background:#000;transform:translateY(-3px);box-shadow:0 6px 0 rgba(0,0,0,.35)}
+  .ruko-card .no:hover{background:rgba(0,0,0,.1);text-decoration-thickness:3px}
+
+  /* job form */
+  .fld input:not([type=checkbox]):not([type=radio]):not([type=file]):hover:not(:focus),.fld select:hover:not(:focus),.fld textarea:hover:not(:focus){border-color:#e2a463}
+  .chips label:hover input:not(:checked) + span{border-color:var(--ink);background:#fff3e4;transform:translateY(-2px)}
+  .fld.file:hover .lb{color:#b85f00}
+  .fld.file:hover .file-ui{border-color:var(--orange);background:#fff6ea;color:var(--ink)}
+  .consent:hover input{transform:scale(1.15)}
+  .consent:hover span{text-decoration:underline;text-decoration-color:var(--orange);text-underline-offset:3px}
+}
+
+/* keyboard: same look when tabbing onto a control */
+.logo:focus-visible img{transform:rotate(-4deg) scale(1.06)}
+.burger:focus-visible span{background:var(--white)}
+.fx-hot:focus-visible{transform:scale(1.2);background:var(--orange)}
+.fx-chips button:focus-visible,.phone:focus-visible,.plate-pill:focus-visible,.chai-top:focus-visible,
+.pp-actions a:focus-visible,.pp-actions button:focus-visible,.pp-list button:focus-visible,.pp-x:focus-visible,
+.fx-kk-acts button:focus-visible,.fx-kk-x:focus-visible,.ruko-card a:focus-visible,.ruko-card button:focus-visible,
+.socials a:focus-visible,.ov-close:focus-visible,.story2-order:focus-visible,.burger:focus-visible,.logo:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+.ruko-card a:focus-visible,.ruko-card button:focus-visible,.pp-x:focus-visible{outline-color:var(--ink)}
+
+/* touch + click: quick press-in */
+.pp-actions a:active,.pp-actions button:active,.fx-kk-acts button:active,.ruko-card a:active,.ruko-card button:active,
+.fx-chips button:active,.pp-list button:active,.plate-pill:active,.fx-boxbtn:active,.fx-kk-btn:active,.cat-send:active,.btn:active,.gmaps:active{transform:scale(.96)}
+.phone:active,.chai-top.show:active,.burger:active{transform:scale(.9)}
+.fx-hot:active{transform:scale(.9)}
+@media (prefers-reduced-motion:reduce){.wordmark:hover{transform:rotate(-7deg)}}
 </style>
 </head>
 <body>
