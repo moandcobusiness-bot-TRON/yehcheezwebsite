@@ -1910,6 +1910,17 @@ document.querySelectorAll('#order, .story2-order').forEach(a => {
     stopAll();
     const i = next(); wm.dataset.lastAnim = ANIMS[i][0]; ANIMS[i][1]();
   });
+  // the wordmark moves around while animating, so quick follow-up taps on its usual spot
+  // still count (keeps the 5-quick-tap chai rain reachable)
+  const hero = wm.closest('.hero'); let rest = null;
+  const busy = () => wm.getAnimations().length || L().some(l => l.getAnimations().length);
+  const measure = () => { if (busy()) return; const r = wm.getBoundingClientRect(), h = hero.getBoundingClientRect(); rest = { x: r.left - h.left, y: r.top - h.top, w: r.width, h: r.height }; };
+  setTimeout(measure, 2000); addEventListener('resize', () => setTimeout(measure, 300));
+  hero && hero.addEventListener('click', e => {
+    if (!rest || wm.contains(e.target)) return;
+    const h = hero.getBoundingClientRect(), x = e.clientX - h.left, y = e.clientY - h.top, pad = 12;
+    if (x >= rest.x - pad && x <= rest.x + rest.w + pad && y >= rest.y - pad && y <= rest.y + rest.h + pad) wm.click();
+  });
   window.YC_WM_COUNT = ANIMS.length;
 })();
 </script>
